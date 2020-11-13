@@ -109,7 +109,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
     */
 
     Route::prefix('postback')->group(function() {
-        Route::namespace('client/customer')->group(function(){
+        Route::namespace('Client\Customer')->group(function(){
             Route::post('order', 'CustomerOrderController@postBackOrder');
         });
     });
