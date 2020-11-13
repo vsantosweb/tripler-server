@@ -12,7 +12,7 @@ class CustomerOrderController extends CustomerController
     public function purchaseOrder(Request $request)
     {
 
-        return $newPurchaseOrder = $this->tripOrder->store($request);
+        $newPurchaseOrder = $this->tripOrder->store($request);
 
         $customerAddress = $request->customer['address'];
         $pagarme = new PagarMe('ak_test_7ZdqNZE9QSlamtPbi5v030vmN1v1vj');
