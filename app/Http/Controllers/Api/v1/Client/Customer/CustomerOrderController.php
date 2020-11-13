@@ -20,7 +20,8 @@ class CustomerOrderController extends CustomerController
             'amount' => intval($request->totalAmount * 100),
             'card_id' => $request->card['id'],
             'payment_method' => $request->paymentMethod['slug'],
-            'postback_url' => env('APP_URL') . '/api/v1/postback/order',
+            'postback_url' => 'https://ac6405dc8caeb8ea75bc7f5804c651e9.m.pipedream.net',
+            // 'postback_url' => env('APP_URL') . '/api/v1/postback/order',
             'customer' => [
                 'external_id' => $request->customer['uid'],
                 'name' => $request->customer['name'],

@@ -8,12 +8,15 @@ class TripOrderTransaction extends Model
 {
     protected $fillable = [
         'code',
+        'status',
         'trip_order_id',
         'ip',
         'geo_location',
         'user_agent',
-        'tax'
+        'metadata',
     ];
+
+    protected $casts = ['metadata' => 'Object'];
 
     public function order()
     {
