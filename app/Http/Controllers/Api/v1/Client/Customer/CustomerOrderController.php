@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\Client\Customer;
 use App\Models\Trip\TripOrderTransaction;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use PagarMe\Client as PagarMe;
 
 class CustomerOrderController extends CustomerController
@@ -87,10 +88,15 @@ class CustomerOrderController extends CustomerController
 
     public function postBackOrder(Request $request)
     {
-        TripOrderTransaction::firstOrCreate([
-            'code' => uniqid(),
+        $newTransaction = TripOrderTransaction::firstOrCreate([
             'trip_order_id' => 1,
+            'code' => date('Y'). '-' . Str::random(4). '-' . Str::random(4). '-' . Str::random(4),
             'metadata' => $request->all()
         ]);
+
+        $newTransaction->status =  $newTransaction->metadata->transaction->status;
+        $newTransaction->ip =  $newTransaction->metadata->transaction->ip;
+        $newTransaction->save();
+
     }
 }
