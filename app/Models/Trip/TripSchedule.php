@@ -26,10 +26,7 @@ class TripSchedule extends Model
         'discount'
     ];
 
-    public function agency()
-    {
-        return $this->belongsTo(Agency::class);
-    }
+
 
     public function packages()
     {
@@ -43,7 +40,7 @@ class TripSchedule extends Model
 
     public function trip()
     {
-        return $this->belongsTo(Trip::class, 'trip_id');
+        return $this->belongsTo(Trip::class, 'trip_id')->with('agency');
     }
 
     public function tax()

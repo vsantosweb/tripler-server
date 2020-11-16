@@ -13,6 +13,8 @@ class CustomerOrderController extends CustomerController
     public function purchaseOrder(Request $request)
     {
 
+        $test = new TripOrderTransaction();
+
         $newPurchaseOrder = $this->tripOrder->store($request);
 
         $customerAddress = $request->customer['address'];

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1\BackOffice\Trip;
 
 use App\Http\Controllers\Controller;
 use App\Mail\OrderPlacedMail;
-
+use App\Models\Trip\TripOrderItem;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -37,8 +37,6 @@ class TripOrderController extends TripController
             return $this->outputJSON([], 'Limit of vacancies reaching', 'true', 400);
         }
 
-        // $moipCustomer = new MoipCustomer();
-        // return  $moipCustomer->create($this->customer->with('address', 'cards')->find($request->customer_id));
 
         // $customerLocation = \Location::get($request->ip());
         // $amount = $this->tripTax->calculate($request->amount);
@@ -57,8 +55,14 @@ class TripOrderController extends TripController
 
         ]);
 
+        TripOrderItem::firstOrCreate([
+            'trip_schedule_id' => $currentTripSchedule->id,
+            'order_id' => $newOrder->id,
+            'price' => $currentTripSchedule->price
+        ]);
+
         // $newOrder->customer->email;
-        Mail::to('soaresanserson221@gmail.com')->send(new OrderPlacedMail($newOrder));
+        Mail::to($newOrder->customer->email)->send(new OrderPlacedMail($newOrder));
 
         return $newOrder;
 

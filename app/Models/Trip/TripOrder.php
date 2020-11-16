@@ -43,4 +43,9 @@ class TripOrder extends Model
     {
         return $this->belongsTo(TripOrderStatus::class, 'trip_order_status_id');
     }
+
+    public function tripOrderItem()
+    {
+        return $this->hasOne(TripOrderItem::class);
+    }
 }
