@@ -38,7 +38,7 @@ class TripSchedule extends Model
 
     public function trip()
     {
-        return $this->belongsTo(Trip::class, 'trip_id')->with('agency');
+        return $this->belongsTo(Trip::class, 'trip_id')->with('agency', 'feature');
     }
 
     public function tax()

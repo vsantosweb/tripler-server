@@ -23,5 +23,10 @@ class TripBoardingLocationsSeeder extends Seeder
                 'slug' => 'terminal-varginha'
             ],
         ]);
+
+        DB::table('trip_boardings')->insert([
+            ['trip_schedule_id' => 1, 'trip_boarding_id' => 1],
+            ['trip_schedule_id' => 1, 'trip_boarding_id' => 2],
+        ]);
     }
 }

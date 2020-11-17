@@ -37,5 +37,11 @@ class TripPackagesSeeder extends Seeder
                 'shared' => 1
             ],
         ]);
+
+        DB::table('trip_schedule_packages')->insert([
+            ['trip_schedule_id' => 1, 'trip_package_id' => 1],
+            ['trip_schedule_id' => 1, 'trip_package_id' => 2],
+            ['trip_schedule_id' => 1, 'trip_package_id' => 3]
+        ]);
     }
 }

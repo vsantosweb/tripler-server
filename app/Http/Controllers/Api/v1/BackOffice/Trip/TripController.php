@@ -96,7 +96,7 @@ class TripController extends Controller
         $newTrip = $this->trip->firstOrCreate([
 
             'name' => $request->name,
-            'code' => strtoupper(uniqid()),
+            'code' => Str::uuid(),
             'agency_id' => auth()->guard('agency')->user()->load('agency')->agency->id,
             'trip_category_id' => $request->trip_category_id,
             'trip_status_id' => 1,

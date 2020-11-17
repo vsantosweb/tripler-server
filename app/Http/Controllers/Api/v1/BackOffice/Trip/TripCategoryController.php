@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\v1\BackOffice\Trip;
 
-use App\Http\Controllers\Api\v1\Trip\TripController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,7 +14,7 @@ class TripCategoryController extends TripController
      */
     public function index()
     {
-        
+
     }
 
     /**

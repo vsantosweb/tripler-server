@@ -11,8 +11,6 @@ class TripCart extends Model
 
     protected $casts = ['cart_data' => 'object'];
 
-    protected $totalPrice;
-
     public function customer()
     {
         return $this->belongsTo(Customer::class);
@@ -21,40 +19,5 @@ class TripCart extends Model
     public function tripSchedule()
     {
         return $this->belongsTo(TripSchedule::class);
-    }
-
-    public function calculatedItems()
-    {
-        $package = [];
-
-        $package= [
-            'code' => $this->code,
-            'package_data' => $this->options,
-        ];
-
-        $package['options']->items = [];
-
-        foreach($this->options->items as $item){
-
-            $item->totalPackage = $this->tripSchedule->price + $item->amount;
-
-            foreach($item->subItems as $subItem){
-
-                $item->total = $item->amount + $item->totalPackage + $subItem->amount;
-
-            }
-
-            $this->totalPrice['total'] = $item->total * count($this->options->items);
-            $this->totalPrice['discount_percent'] = $this->tripSchedule->discount_percent;
-            $package['options']->items[] = $item;
-        }
-        return $package;
-    }
-
-
-    public function getTotalCart()
-    {
-        $this->calculatedItems();
-        return $this->totalPrice;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\BackOffice\Trip;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TripCartController extends TripController
 {
@@ -29,7 +30,7 @@ class TripCartController extends TripController
 
             return $this->tripCart->firstOrCreate([
                 'code' => sha1(microtime()),
-                'session_id' => sha1(date('Y').uniqid()),
+                'session_id' => Str::uuid(),
                 'cart_data' => str_replace(array("\r", "\n", " "), "", $request->all())
             ])->session_id;
 
@@ -101,12 +102,5 @@ class TripCartController extends TripController
 
             return $e->getMessage();
         }
-    }
-
-    public function calculate($code)
-    {
-        $tripCart = $this->tripCart->where('code', $code)->firstOrfail();
-
-        return $tripCart->getTotalCart();
     }
 }
