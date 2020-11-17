@@ -16,8 +16,6 @@ class Customer extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-
-
     /**
      * The attributes that are mass assignable.
      *

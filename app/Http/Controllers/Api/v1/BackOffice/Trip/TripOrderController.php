@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers\Api\v1\BackOffice\Trip;
 
-use App\Http\Controllers\Controller;
-use App\Mail\OrderPlacedMail;
 use App\Models\Trip\TripOrderItem;
-use App\Models\Trip\TripOrderTransaction;
-use Carbon\Carbon;
-use Exception;
+use App\Notifications\Order\OrderPlacedNotification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 
 class TripOrderController extends TripController
 {
@@ -62,8 +56,7 @@ class TripOrderController extends TripController
             'price' => $currentTripSchedule->price
         ]);
 
-        // $newOrder->customer->email;
-        Mail::to($newOrder->customer->email)->send(new OrderPlacedMail($newOrder));
+        $newOrder->customer->notify(new OrderPlacedNotification($newOrder));
 
         return $newOrder;
 

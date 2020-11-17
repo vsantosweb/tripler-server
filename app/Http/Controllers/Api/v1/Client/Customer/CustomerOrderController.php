@@ -91,7 +91,7 @@ class CustomerOrderController extends CustomerController
 
         $newTransaction = TripOrderTransaction::firstOrCreate([
             'trip_order_id' => $tripOrder->id,
-            'code' =>intval( "0" . rand(1,9)  . rand(0,9) . rand(0,9) . rand(0,9)). '-'.intval( "0"  . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9)). '-'. intval( "0"  . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9)),
+            'code' => Str::uuid(),
             'metadata' => $request->all()
         ]);
 

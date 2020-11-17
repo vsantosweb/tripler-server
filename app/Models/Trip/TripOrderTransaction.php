@@ -3,11 +3,18 @@
 namespace App\Models\Trip;
 
 use App\Mail\orderApprovedMail;
+use App\Notifications\Order\OrderApprovedNotification;
+use App\Notifications\Order\OrderPlacedNotification;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
 class TripOrderTransaction extends Model
 {
+
+    use Notifiable;
+
     protected $fillable = [
         'code',
         'status',
@@ -34,7 +41,7 @@ class TripOrderTransaction extends Model
             if ($transaction->order->status->id === 2) {
 
                 $tripProcess->firstOrCreate([
-                    'code' => strtoupper(uniqid() . uniqid()),
+                    'code' => Str::uuid(),
                     'customer_id' => $transaction->order->customer->id,
                     'trip_schedule_id' => $transaction->order->tripOrderItem->trip_schedule_id,
                     'status' => 1,
@@ -43,9 +50,10 @@ class TripOrderTransaction extends Model
                     'end_date'=>  $transaction->order->tripOrderItem->tripSchedule->end_date,
                 ]);
 
-                Mail::to($transaction->order->customer->email)->send(new orderApprovedMail($transaction->order));
                 $transaction->order->trip_order_status_id = 1;
                 $transaction->order->save();
+                $transaction->order->customer->notify(new OrderApprovedNotification($transaction->order));
+
             }
         }
     }
