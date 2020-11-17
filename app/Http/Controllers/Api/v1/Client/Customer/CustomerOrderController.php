@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1\Client\Customer;
 
+use App\Models\Trip\TripOrderTransaction;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;

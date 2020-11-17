@@ -26,8 +26,6 @@ class TripSchedule extends Model
         'discount'
     ];
 
-
-
     public function packages()
     {
         return $this->belongsToMany(TripPackage::class, 'trip_schedule_packages');
