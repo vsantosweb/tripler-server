@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\v1\Client\Customer;
 
-use App\Models\Trip\TripOrderTransaction;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -13,11 +12,11 @@ class CustomerOrderController extends CustomerController
     public function purchaseOrder(Request $request)
     {
 
-        $test = new TripOrderTransaction();
 
         $newPurchaseOrder = $this->tripOrder->store($request);
 
         $customerAddress = $request->customer['address'];
+
         $pagarme = new PagarMe('ak_test_7ZdqNZE9QSlamtPbi5v030vmN1v1vj');
         $transaction = $pagarme->transactions()->create([
             'amount' => intval($request->totalAmount * 100),

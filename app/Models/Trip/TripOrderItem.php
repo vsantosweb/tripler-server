@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TripOrderItem extends Model
 {
     protected $fillable = [
-        'order_id',
+        'trip_order_id',
         'trip_schedule_id',
         'price',
         'discount',
@@ -17,5 +17,10 @@ class TripOrderItem extends Model
     public function tripOrder()
     {
         return $this->belongsTo(TripOrder::class);
+    }
+
+    public function tripSchedule()
+    {
+        return $this->belongsTo(TripSchedule::class)->with('trip');
     }
 }

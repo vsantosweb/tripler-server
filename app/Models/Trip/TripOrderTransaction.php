@@ -28,22 +28,24 @@ class TripOrderTransaction extends Model
     public function checkPaid()
     {
         $paidTransactions = $this->where('status', 'paid')->get();
+        $tripProcess = new TripProcess();
 
-        foreach($paidTransactions as $transaction){
+        foreach ($paidTransactions as $transaction) {
+            if ($transaction->order->status->id === 2) {
 
-            if($transaction->order->status->id === 2){
+                $tripProcess->firstOrCreate([
+                    'code' => strtoupper(uniqid() . uniqid()),
+                    'customer_id' => $transaction->order->customer->id,
+                    'trip_schedule_id' => $transaction->order->tripOrderItem->trip_schedule_id,
+                    'status' => 1,
+                    'trip_metadata' => $transaction->order,
+                    'start_date'=>  $transaction->order->tripOrderItem->tripSchedule->start_date,
+                    'end_date'=>  $transaction->order->tripOrderItem->tripSchedule->end_date,
+                ]);
 
                 Mail::to($transaction->order->customer->email)->send(new orderApprovedMail($transaction->order));
                 $transaction->order->trip_order_status_id = 1;
                 $transaction->order->save();
-
-                $tripProcess = new TripProcess();
-
-                $tripProcess->create([
-                    'code' => strtoupper(uniqid().uniqid()),
-                    'customer_id' => $transaction->order->customer->id,
-                    'trip_schedule_id' => $transaction->order->customer->tripOrderItem->trip_schedule_id
-                ]);
             }
         }
     }

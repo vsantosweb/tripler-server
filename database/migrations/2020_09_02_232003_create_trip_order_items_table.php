@@ -15,14 +15,14 @@ class CreateTripOrderItemsTable extends Migration
     {
         Schema::create('trip_order_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('trip_order_id');
             $table->unsignedBigInteger('trip_schedule_id');
             $table->double('price');
             $table->double('discount')->default(0);
             $table->integer('reward')->default(0);
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('trip_orders')->onDelete('cascade');
+            $table->foreign('trip_order_id')->references('id')->on('trip_orders')->onDelete('cascade');
             $table->foreign('trip_schedule_id')->references('id')->on('trip_schedules');
 
 

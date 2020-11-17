@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\BackOffice\Trip;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderPlacedMail;
 use App\Models\Trip\TripOrderItem;
+use App\Models\Trip\TripOrderTransaction;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -57,7 +58,7 @@ class TripOrderController extends TripController
 
         TripOrderItem::firstOrCreate([
             'trip_schedule_id' => $currentTripSchedule->id,
-            'order_id' => $newOrder->id,
+            'trip_order_id' => $newOrder->id,
             'price' => $currentTripSchedule->price
         ]);
 

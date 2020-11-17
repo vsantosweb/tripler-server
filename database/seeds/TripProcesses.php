@@ -17,6 +17,8 @@ class TripProcesses extends Seeder
             'trip_schedule_id' => 1,
             'status' => 1,
             'trip_metadata' => '',
+            'start_date' => now(),
+            'end_date' => now()->addDays(2)
         ]);
     }
 }

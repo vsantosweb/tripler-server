@@ -46,6 +46,6 @@ class TripOrder extends Model
 
     public function tripOrderItem()
     {
-        return $this->hasOne(TripOrderItem::class);
+        return $this->hasOne(TripOrderItem::class, 'trip_order_id')->with('tripSchedule');
     }
 }

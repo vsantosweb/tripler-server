@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TripProcess extends Model
 {
-    protected $fillable = ['customer_id', 'code', 'trip_schedule_id', 'status', 'trip_metadata'];
+    protected $fillable = ['customer_id', 'code', 'trip_schedule_id', 'status', 'trip_metadata', 'start_date', 'end_date'];
     protected $casts = ['trip_metadata' => 'Object'];
 
     public function customer()

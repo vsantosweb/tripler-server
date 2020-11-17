@@ -20,6 +20,9 @@ class CreateTripProcessesTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('trip_schedule_id');
             $table->tinyInteger('status');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->tinyInteger('has_finished')->default(0);
             $table->text('trip_metadata')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('trip_schedule_id')->references('id')->on('trip_schedules');
