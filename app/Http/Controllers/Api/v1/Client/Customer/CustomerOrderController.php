@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1\Client\Customer;
 
+use App\Models\Trip\TripOrder;
 use App\Models\Trip\TripOrderTransaction;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,7 +15,6 @@ class CustomerOrderController extends CustomerController
     {
 
 
-        $newPurchaseOrder = $this->tripOrder->store($request);
 
         $customerAddress = $request->customer['address'];
 
@@ -75,23 +75,22 @@ class CustomerOrderController extends CustomerController
                 ]
             ]
         ]);
+        $tripOrder = $this->tripOrder->store($request);
+
+
+        $tripOrder->code = $transaction->id;
+        $tripOrder->save();
 
         return $this->outputJSON($transaction, '$e->getMessage()', 'false', 201);
 
-        try {
-            $newPurchaseOrder = $this->tripOrder->store($request);
-
-            return $newPurchaseOrder;
-        } catch (Exception $e) {
-
-            return $this->outputJSON([], $e->getMessage(), 'true', 500);
-        }
     }
 
     public function postBackOrder(Request $request)
     {
+        $tripOrder = TripOrder::where('code',  $request->id)->first();
+
         $newTransaction = TripOrderTransaction::firstOrCreate([
-            'trip_order_id' => 1,
+            'trip_order_id' => $tripOrder->id,
             'code' =>intval( "0" . rand(1,9)  . rand(0,9) . rand(0,9) . rand(0,9)). '-'.intval( "0"  . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9)). '-'. intval( "0"  . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9)),
             'metadata' => $request->all()
         ]);
