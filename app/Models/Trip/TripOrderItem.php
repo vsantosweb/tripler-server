@@ -11,6 +11,7 @@ class TripOrderItem extends Model
         'trip_schedule_id',
         'price',
         'discount',
+        'quantity',
         'reward',
     ];
 

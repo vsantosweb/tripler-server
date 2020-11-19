@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api\v1\Client\Site;
 
 use App\Http\Controllers\Api\v1\BackOffice\Trip\TripController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SiteTripController extends TripController
 {
-    public function schedule()
+    public function schedules()
     {
         return $this->outputJSON($this->tripSchedule->get(), '', false, 200);
     }
@@ -25,5 +26,15 @@ class SiteTripController extends TripController
     public function additionalPackages($code)
     {
         return $this->outputJSON($this->tripSchedule->where('code', $code)->first()->additionalPackages, '', false, 200);
+    }
+
+    public function schedulesCategories()
+    {
+        return $this->outputJSON($this->tripCategory::with('tripSchedules')->get(), '', false, 200);
+    }
+    public function schedulesByCategory($categoryCode)
+    {
+        $category = $this->tripCategory->where('code', $categoryCode)->with('tripSchedules')->firstOrFail();
+        return $this->outputJSON($category, '', false, 200);
     }
 }

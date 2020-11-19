@@ -53,6 +53,7 @@ class TripOrderTransaction extends Model
                 $transaction->order->trip_order_status_id = 1;
                 $transaction->order->save();
                 $transaction->order->customer->notify(new OrderApprovedNotification($transaction->order));
+                print('ORDER-'.$transaction->order->code .' Approved'. "\n");
 
             }
         }

@@ -28,13 +28,14 @@ class TripOrderController extends TripController
     public function store(Request $request)
     {
         $currentTripSchedule =  $this->tripSchedule->where('code', $request->code)->firstOrFail();
-        if (!$currentTripSchedule->fillVacancie()) {
-            return $this->outputJSON([], 'Limit of vacancies reaching', 'true', 400);
+        try {
+            $currentTripSchedule->fillVacancie($request->passagers);
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
-
-
         // $customerLocation = \Location::get($request->ip());
-        // $amount = $this->tripTax->calculate($request->amount);
+        $amount = $this->tripTax->calculate($request->totalAmount);
+
         $newOrder = $this->tripOrder->firstOrCreate([
 
             'code' => strtoupper(date('Y').uniqid()),
@@ -46,14 +47,17 @@ class TripOrderController extends TripController
             'passagers' => str_replace(array("\r", "\n", " "), "", $request->passagers),
             'payment_method' => $request->paymentMethod['slug'],
             'total_amount' => $request->totalAmount,
-            'tax' => 6,
+            'expire_at' => now()->addDays(3),
+            'user_agent' => $request->userAgent(),
+            'tax' => $amount['tax'],
 
         ]);
 
         TripOrderItem::firstOrCreate([
             'trip_schedule_id' => $currentTripSchedule->id,
             'trip_order_id' => $newOrder->id,
-            'price' => $currentTripSchedule->price
+            'price' => $currentTripSchedule->price,
+            'quantity' => count($request->passagers)
         ]);
 
         $newOrder->customer->notify(new OrderPlacedNotification($newOrder));

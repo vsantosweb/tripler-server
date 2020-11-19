@@ -16,7 +16,7 @@ class CustomerSeeder extends Seeder
             [
                 'name'=> 'John Doe',
                 'uid' => md5(microtime()),
-                'email'=> 'john@doe.com',
+                'email'=> 'souzavito@hotmail.com',
                 'password'=> Hash::make('password'),
                 'rg'=> '36568989888',
                 'cpf'=> '56569987878',

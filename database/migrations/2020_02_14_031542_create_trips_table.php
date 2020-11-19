@@ -23,14 +23,11 @@ class CreateTripsTable extends Migration
             $table->string('image')->nullable();
             $table->string('image_url')->nullable();
             $table->string('description')->nullable();
-            $table->unsignedBigInteger('trip_tax_id');
             $table->string('home_dir')->nullable();
-
             $table->timestamps();
 
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('trip_status_id')->references('id')->on('trip_status');
-            $table->foreign('trip_tax_id')->references('id')->on('trip_taxes');
 
 
         });

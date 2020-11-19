@@ -14,17 +14,17 @@ class TripStatusSeeder extends Seeder
         DB::table('trip_status')->insert([
 
             [
-                'name' => 'Vagas Disponíveis',
-                'slug' => 'vagas-disponiveis'
+                'name' => 'Ativo',
+                'slug' => 'ativo'
             ],
 
             [
-                'name' => 'Poucas Vagas',
-                'slug' => 'poucas-vagas'
+                'name' => 'Desativado',
+                'slug' => 'desativado'
             ],
             [
-                'name' => 'Esgotado',
-                'slug' => 'esgotado'
+                'name' => 'Rascunho',
+                'slug' => 'rascunho'
             ],
         ]);
     }

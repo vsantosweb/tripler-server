@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1\Client\Customer;
 
 use App\Models\Trip\TripOrder;
 use App\Models\Trip\TripOrderTransaction;
+use App\Models\Trip\TripTax;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -14,8 +15,11 @@ class CustomerOrderController extends CustomerController
     public function purchaseOrder(Request $request)
     {
 
-
-
+        try {
+            $tripOrder = $this->tripOrder->store($request);
+        } catch (\Exception $e) {
+            return $this->outputJSON([], $e->getMessage(), 'false', 201);
+        }
         $customerAddress = $request->customer['address'];
 
         $pagarme = new PagarMe('ak_test_7ZdqNZE9QSlamtPbi5v030vmN1v1vj');
@@ -64,25 +68,25 @@ class CustomerOrderController extends CustomerController
             'split_rules' => [
                 [
                     'id' => 'sr_cj41w9m4d01ta316d02edaqav',
-                    'percentage' => '6',
+                    'percentage' => intval(TripTax::first()->percent_tax),
                     'recipient_id' => 're_ckfg1b1x202gzp66eygzvjd68'
                 ],
                 [
                     'id' => 'sr_cj41w9m4e01tb316dl2f2veyz',
-                    'percentage' => '94',
+                    'percentage' => intval(100 - TripTax::first()->percent_tax),
                     'recipient_id' => 're_ckf8mdiry05d3ou6d3ex5eoha',
                     'charge_processing_fee' => 'true'
                 ]
             ]
         ]);
-        $tripOrder = $this->tripOrder->store($request);
+
+
 
 
         $tripOrder->code = $transaction->id;
         $tripOrder->save();
 
         return $this->outputJSON($transaction, '$e->getMessage()', 'false', 201);
-
     }
 
     public function postBackOrder(Request $request)
@@ -98,6 +102,5 @@ class CustomerOrderController extends CustomerController
         $newTransaction->status =  $newTransaction->metadata->transaction->status;
         $newTransaction->ip =  $newTransaction->metadata->transaction->ip;
         $newTransaction->save();
-
     }
 }

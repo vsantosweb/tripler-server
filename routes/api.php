@@ -87,32 +87,32 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
                 Route::patch('carts/{code}', 'CustomerTripCartController@change');
                 Route::delete('carts/{code}', 'CustomerTripCartController@delete');
                 Route::get('carts/{code}/calculate', 'CustomerTripCartController@calculate');
-
             });
         });
         /* Public  Routes */
         Route::prefix('public')->namespace('Site')->group(function () {
-            Route::prefix('trips')->group(function() {
-                Route::get('schedule', 'SiteTripController@schedule');
+            Route::prefix('trips')->group(function () {
+                Route::get('schedule', 'SiteTripController@schedules');
                 Route::get('schedule/{code}', 'SiteTripController@showSchedule');
                 Route::get('passager-types', 'SiteTripController@passagerTypes');
                 Route::get('additional-packages/{code}', 'SiteTripController@additionalPackages');
                 Route::get('trip-boarding-locations/{code}', 'SiteTripController@tripBoardingLocationList');
+
+                Route::get('categories', 'SiteTripController@schedulesCategories');
+                Route::get('categories/{categoryCode}', 'SiteTripController@schedulesByCategory');
             });
         });
     });
 
-     /*
+    /*
     |--------------------------------------------------------------------------
     | Post Back URLs
     |--------------------------------------------------------------------------
     */
 
-    Route::prefix('postback')->group(function() {
-        Route::namespace('Client\Customer')->group(function(){
+    Route::prefix('postback')->group(function () {
+        Route::namespace('Client\Customer')->group(function () {
             Route::post('order', 'CustomerOrderController@postBackOrder');
         });
     });
 });
-
-

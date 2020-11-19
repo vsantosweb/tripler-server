@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Trip\TripSchedule;
 use Illuminate\Database\Seeder;
 
-class TripSchedulesSeeder extends Seeder
+class TripOrderItemSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +11,6 @@ class TripSchedulesSeeder extends Seeder
      */
     public function run()
     {
-        factory(TripSchedule::class, 20)->create();
+        //
     }
 }

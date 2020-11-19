@@ -61,20 +61,23 @@ class TripSchedule extends Model
         return $this->hasMany(TripAdditionalPackage::class);
     }
 
-    public function fillVacancie()
+    public function fillVacancie($passagers)
     {
+
         if ($this->vacancies_filled < $this->vacancies_quantity) {
-            $this->vacancies_filled++;
+            $this->vacancies_filled += count($passagers);
             $this->save();
             return true;
         }
+
         $this->trip_schedule_status_id = 3;
         $this->save();
-        return false;
+        throw new \Exception('Limit of vacancies reaching');
+
     }
 
     // retorna percentual de vagas já preenchidas
-    public function getusedVacancies()
+    public function getusedVacanciesPercent()
     {
         $used  = round($this->vacancies_filled / $this->vacancies_quantity * 100);
 
@@ -84,5 +87,12 @@ class TripSchedule extends Model
         }
 
         return $used;
+    }
+
+    public function verifyPassagerVacancies($passagers){
+
+        if(($this->vacancies_filled + count($passagers)) > $this->vacancies_quantity){
+            throw new \Exception('Quantidade de passageiros excede o número de vagas');
+        }
     }
 }

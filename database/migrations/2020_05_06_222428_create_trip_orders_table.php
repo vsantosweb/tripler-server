@@ -25,6 +25,8 @@ class CreateTripOrdersTable extends Migration
             $table->string('payment_method')->nullable();
             $table->double('total_amount');
             $table->double('tax');
+            $table->date('expire_at');
+            $table->string('user_agent')->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers');

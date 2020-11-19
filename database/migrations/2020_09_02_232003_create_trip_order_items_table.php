@@ -18,6 +18,7 @@ class CreateTripOrderItemsTable extends Migration
             $table->unsignedBigInteger('trip_order_id');
             $table->unsignedBigInteger('trip_schedule_id');
             $table->double('price');
+            $table->integer('quantity')->default(1);
             $table->double('discount')->default(0);
             $table->integer('reward')->default(0);
             $table->timestamps();
