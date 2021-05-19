@@ -80,7 +80,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
             });
 
             Route::middleware('auth:customer')->group(function () {
-                Route::post('purchase-order', 'CustomerOrderController@purchaseOrder');
+                Route::post('purchase-order', 'CustomerOrderController@create');
                 Route::post('carts', 'CustomerTripCartController@add');
                 Route::get('carts', 'CustomerTripCartController@list');
                 Route::get('carts/{code}', 'CustomerTripCartController@show');

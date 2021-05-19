@@ -8,8 +8,8 @@ class TripCategory extends Model
 {
     protected $fillable = ['name' ,'slug'];
 
-    public function tripSchedules()
+    public function trips()
     {
-        return $this->hasMany(TripSchedule::class)->with('trip');
+        return $this->hasMany(Trip::class)->with('schedules');
     }
 }

@@ -28,20 +28,24 @@ class TripOrderController extends TripController
     public function store(Request $request)
     {
         $currentTripSchedule =  $this->tripSchedule->where('code', $request->code)->firstOrFail();
+
         try {
+
             $currentTripSchedule->fillVacancie($request->passagers);
         } catch (\Exception $e) {
-            return $e->getMessage();
+
+            throw new \Exception($e->getMessage(), 1);
         }
+
         // $customerLocation = \Location::get($request->ip());
         $amount = $this->tripTax->calculate($request->totalAmount);
 
         $newOrder = $this->tripOrder->firstOrCreate([
 
-            'code' => strtoupper(date('Y').uniqid()),
+            'code' => strtoupper(date('Y') . uniqid()),
             'customer_id' => $request->customer['id'],
             'trip_order_status_id' => 2,
-            'boarding_location' =>  str_replace(array("\r", "\n", " "), "",$request->boarding_location),
+            'boarding_location' =>  str_replace(array("\r", "\n", " "), "", $request->boarding_location),
             'trip_name' => $request->name,
             'trip_package' => str_replace(array("\r", "\n", " "), "", $request->package),
             'passagers' => str_replace(array("\r", "\n", " "), "", $request->passagers),
@@ -63,7 +67,6 @@ class TripOrderController extends TripController
         $newOrder->customer->notify(new OrderPlacedNotification($newOrder));
 
         return $newOrder;
-
     }
 
     /**

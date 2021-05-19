@@ -12,9 +12,11 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
     public function __construct(
+
         TripOrderController $tripOrder,
         CustomerBackOfficeController $customer,
         TripCartController $tripCart
+        
     ) {
         $this->tripOrder = $tripOrder;
         $this->customer = $customer;

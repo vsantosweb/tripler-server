@@ -17,7 +17,7 @@ class CreateTripSchedulesTable extends Migration
             $table->bigIncrements('id');
             $table->string('code', 100)->unique()->default(sha1(now().uniqid()));
             $table->unsignedBigInteger('trip_id');
-            $table->unsignedBigInteger('trip_category_id');
+            $table->unsignedBigInteger('trip_schedule_category_id');
             $table->unsignedInteger('trip_schedule_status_id');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
@@ -31,7 +31,7 @@ class CreateTripSchedulesTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('trip_category_id')->references('id')->on('trip_categories');
+            $table->foreign('trip_schedule_category_id')->references('id')->on('trip_schedule_categories');
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
             $table->foreign('trip_schedule_status_id')->references('id')->on('trip_schedule_status');
 

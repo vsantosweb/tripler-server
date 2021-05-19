@@ -30,7 +30,7 @@ class SiteTripController extends TripController
 
     public function schedulesCategories()
     {
-        return $this->outputJSON($this->tripCategory::with('tripSchedules')->get(), '', false, 200);
+        return $this->outputJSON($this->tripCategory::with('trips')->get(), '', false, 200);
     }
     public function schedulesByCategory($categoryCode)
     {

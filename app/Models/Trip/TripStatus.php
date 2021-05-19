@@ -15,6 +15,6 @@ class TripStatus extends Model
     
     public function trip()
     {
-        return $this->hasMany(Trip::class)->with('tripSchedule');
+        return $this->hasMany(Trip::class)->with('schedules');
     }
 }

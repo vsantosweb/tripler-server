@@ -46,15 +46,14 @@ class TripOrderTransaction extends Model
                     'trip_schedule_id' => $transaction->order->tripOrderItem->trip_schedule_id,
                     'status' => 1,
                     'trip_metadata' => $transaction->order,
-                    'start_date'=>  $transaction->order->tripOrderItem->tripSchedule->start_date,
-                    'end_date'=>  $transaction->order->tripOrderItem->tripSchedule->end_date,
+                    'start_date' =>  $transaction->order->tripOrderItem->tripSchedule->start_date,
+                    'end_date' =>  $transaction->order->tripOrderItem->tripSchedule->end_date,
                 ]);
 
                 $transaction->order->trip_order_status_id = 1;
                 $transaction->order->save();
                 $transaction->order->customer->notify(new OrderApprovedNotification($transaction->order));
-                print('ORDER-'.$transaction->order->code .' Approved'. "\n");
-
+                print('ORDER-' . $transaction->order->code . ' Approved' . "\n");
             }
         }
     }

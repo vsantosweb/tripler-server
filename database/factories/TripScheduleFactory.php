@@ -12,7 +12,7 @@ $factory->define(TripSchedule::class, function (Faker $faker) {
     return [
         'code' => Str::uuid(),
         'trip_id' => 1,
-        'trip_category_id' => mt_rand(1, 2),
+        'trip_schedule_category_id' => mt_rand(1, 2),
         'start_date' => now(),
         'trip_schedule_status_id' => 1,
         'end_date' => now()->addDay(2),

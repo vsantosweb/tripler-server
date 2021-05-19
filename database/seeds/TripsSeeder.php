@@ -14,6 +14,7 @@ class TripsSeeder extends Seeder
         DB::table('trips')->insert([
             [
                 'agency_id' => 1,
+                'trip_category_id' => 1,
                 'code' => md5(microtime()),
                 'name' => 'Cânion Fortaleza - Cambará do Sul - RS',
                 'image' => 'https://i.ytimg.com/vi/GTcwSWZ8GE8/maxresdefault.jpg',
@@ -23,6 +24,7 @@ class TripsSeeder extends Seeder
             ],
             [
                 'agency_id' => 1,
+                'trip_category_id' => 2,
                 'code' => md5(microtime()),
                 'name' => 'Parque Termal Caldas de Prata - Nova Prata - RS',
                 'image' => 'https://angra.rj.gov.br/sopa/fotos/noticias/55399_I.jpg',

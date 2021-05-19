@@ -33,10 +33,13 @@ class Trip extends Model
     {
         return $this->belongsTo(Agency::class);
     }
-
+    public function category()
+    {
+        return $this->belongsTo(TripCategory::class, 'trip_category_id');
+    }
     public function schedules()
     {
-        return $this->hasMany(TripSchedule::class);
+        return $this->hasMany(TripSchedule::class)->with('category', 'status');
     }
 
     public function status()

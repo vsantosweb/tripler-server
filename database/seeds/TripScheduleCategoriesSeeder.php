@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class TripCategoriesSeeder extends Seeder
+class TripScheduleCategoriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,33 +13,26 @@ class TripCategoriesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('trip_categories')->insert([
+        DB::table('trip_schedule_categories')->insert([
 
             [
                 'code' => Str::uuid(),
-                'name' => 'Lazer e Bem Estar',
-                'slug' => 'lazer-bem-estar',
+                'name' => 'Bate & Volta',
+                'slug' => 'bate-volta',
                 'color' => '#ff8507'
 
             ],
 
             [
                 'code' => Str::uuid(),
-                'name' => 'Praias',
-                'slug' => 'praias',
+                'name' => 'Fim de Semana',
+                'slug' => 'fim-de-semana',
                 'color' => '#5828e8'
             ],
             [
                 'code' => Str::uuid(),
-                'name' => 'Eco Turismo',
-                'slug' => 'ecotur',
-                'color' => '#eee'
-
-            ],
-            [
-                'code' => Str::uuid(),
-                'name' => 'Eventos',
-                'slug' => 'eventos',
+                'name' => 'Férias',
+                'slug' => 'ferias',
                 'color' => '#eee'
 
             ],

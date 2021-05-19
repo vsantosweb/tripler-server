@@ -13,7 +13,7 @@ class TripPackagesSeeder extends Seeder
     {
         DB::table('trip_packages')->insert([
             [
-                'agency_id' => 1,
+                'trip_acommodation_id' => 1,
                 'name' => 'Casal',
                 'description' => 'Quarto privativo com ar condic. para 2 pessoas (cama de casal)',
                 'quantity' => 2,
@@ -21,7 +21,7 @@ class TripPackagesSeeder extends Seeder
                 'shared' => 0
             ],
             [
-                'agency_id' => 1,
+                'trip_acommodation_id' => 1,
                 'name' => 'Triplo',
                 'description' => 'Quarto privativo com ar condic. para 3 pessoas',
                 'quantity' => 3,
@@ -29,7 +29,7 @@ class TripPackagesSeeder extends Seeder
                 'shared' => 0
             ],
             [
-                'agency_id' => 1,
+                'trip_acommodation_id' => 1,
                 'name' => 'Único',
                 'description' => 'Vaga em quarto com ar condic. compartilhado para mulheres',
                 'quantity' => 3,

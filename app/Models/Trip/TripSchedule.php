@@ -28,17 +28,22 @@ class TripSchedule extends Model
 
     public function packages()
     {
-        return $this->belongsToMany(TripPackage::class, 'trip_schedule_packages');
+        return $this->belongsToMany(TripPackage::class, 'trip_schedule_packages')->with('acommodation');
     }
 
     public function category()
     {
-        return $this->belongsTo(TripCategory::class, 'trip_category_id');
+        return $this->belongsTo(TripScheduleCategory::class, 'trip_schedule_category_id');
     }
 
     public function trip()
     {
-        return $this->belongsTo(Trip::class, 'trip_id')->with('agency', 'feature');
+        return $this->belongsTo(Trip::class, 'trip_id')->with('agency', 'feature','category');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(TripScheduleStatus::class, 'trip_schedule_status_id');
     }
 
     public function tax()
