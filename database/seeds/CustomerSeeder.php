@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class CustomerSeeder extends Seeder
 {
@@ -15,31 +16,29 @@ class CustomerSeeder extends Seeder
 
             [
                 'name'=> 'John Doe',
-                'uid' => md5(microtime()),
+                'uuid' => Str::uuid(),
                 'email'=> 'souzavito@hotmail.com',
                 'password'=> Hash::make('password'),
-                'rg'=> '36568989888',
-                'cpf'=> '56569987878',
+                'document_1'=> '36568989888',
+                'document_2'=> '56569987878',
                 'birthday'=> '1995-05-20',
                 'gender'=> 'masculino',
-                'is_agency'=> 0,
                 'phone'=> '1156565987',
                 'email_verified_at'=> now(),
-                'home_dir' => 'customers/'. md5(microtime())
+                'home_dir' => 'customers/'. Str::uuid()
             ],
             [
                 'name'=> 'Mario Bross',
-                'uid' => md5(microtime()),
+                'uuid' => Str::uuid(),
                 'email'=> 'mario@bross.com',
                 'password'=> Hash::make('password'),
-                'rg'=> '36568989888',
-                'cpf'=> '56569987878',
+                'document_1'=> '36568989888',
+                'document_2'=> '56569987878',
                 'birthday'=> '1995-05-20',
                 'gender'=> 'masculino',
-                'is_agency'=> 1,
                 'phone'=> '1156565987',
                 'email_verified_at'=> now(),
-                'home_dir' => 'customers/'. md5(microtime())
+                'home_dir' => 'customers/'. Str::uuid()
 
             ],
         ]);

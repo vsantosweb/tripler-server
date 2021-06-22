@@ -15,7 +15,7 @@ class CreateTripPackagesTable extends Migration
     {
         Schema::create('trip_packages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('trip_acommodation_id');
+            $table->unsignedBigInteger('trip_accommodation_id');
             $table->string('name');
             $table->string('description');
             $table->integer('quantity');
@@ -23,7 +23,7 @@ class CreateTripPackagesTable extends Migration
             $table->tinyInteger('shared');
             $table->timestamps();
 
-            $table->foreign('trip_acommodation_id')->references('id')->on('trip_acommodations')->onDelete('cascade');
+            $table->foreign('trip_accommodation_id')->references('id')->on('trip_accommodations')->onDelete('cascade');
         });
     }
 

@@ -16,6 +16,7 @@ class CustomerOrderController extends CustomerController
 {
     public function create(Request $request)
     {
+        return $request->all();
         try {
 
             $tripOrder = $this->tripOrder->store($request);
@@ -43,10 +44,10 @@ class CustomerOrderController extends CustomerController
                 'documents' => [
                     [
                         'type' => 'cpf',
-                        'number' => '38998897032'
+                        'number' => $request->customer['cpf']
                     ]
                 ],
-                'phone_numbers' => ['+551199999999'],
+                'phone_numbers' => $request->customer['phone'],
             ],
             'billing' => [
                 'name' => $request->customer['name'],

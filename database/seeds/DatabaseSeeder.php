@@ -27,14 +27,15 @@ class DatabaseSeeder extends Seeder
             TripScheduleStatusSeeder::class,
             TripSchedulesSeeder::class,
             TripOrderStatusSeeder::class,
-            TripAcommodationsSeeder::class,
+            TripAccommodationsSeeder::class,
             TripPackagesSeeder::class,
             TripOrdersSeeder::class,
             TripFeatures::class,
             TripProcesses::class,
             TripPassagerTypesSeeder::class,
             TripBoardingLocationsSeeder::class,
-            TripAdditionalPackagesSeeder::class
+            TripAdditionalPackagesSeeder::class,
+            TripIncludedItemsSeeder::class
         ]);
     }
 }

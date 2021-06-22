@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class AgenciesSeeder extends Seeder
 {
@@ -13,9 +14,9 @@ class AgenciesSeeder extends Seeder
     {
         DB::table('agencies')->insert([
 
-            'customer_id' => 2,
-            'company_name' => 'Mario Bross Turismo LTDA',
-            'company_email' => 'mturimos@mturismo.com',
+            'name' => 'Mario Bross Turismo LTDA',
+            'email' => 'mturimos@mturismo.com',
+            'password' => Hash::make('password'),
             'phone' => '15454555',
             'uid' => '564564878000158',
             'state_id'=> 1,

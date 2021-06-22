@@ -28,10 +28,16 @@ class SiteTripController extends TripController
         return $this->outputJSON($this->tripSchedule->where('code', $code)->first()->additionalPackages, '', false, 200);
     }
 
-    public function schedulesCategories()
+    public function tripCategeories()
     {
         return $this->outputJSON($this->tripCategory::with('trips')->get(), '', false, 200);
     }
+
+    public function scheduleCategories()
+    {
+        return $this->outputJSON($this->tripScheduleCategory->with('tripSchedules')->get());
+    }
+
     public function schedulesByCategory($categoryCode)
     {
         $category = $this->tripCategory->where('code', $categoryCode)->with('tripSchedules')->firstOrFail();

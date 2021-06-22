@@ -15,6 +15,7 @@ use App\Models\Trip\TripOrderTransaction;
 use App\Models\Trip\TripOrderTransictionHistory;
 use App\Models\Trip\TripPassagerType;
 use App\Models\Trip\TripSchedule;
+use App\Models\Trip\TripScheduleCategory;
 use App\Models\Trip\TripSeoUrl;
 use App\Models\Trip\TripStatus;
 use App\Models\Trip\TripTax;
@@ -39,7 +40,8 @@ class TripController extends Controller
         TripPassagerType $tripPassagerType,
         TripCart $tripCart,
         Customer $customer,
-        TripBoardingLocation $tripBoardingLocation
+        TripBoardingLocation $tripBoardingLocation,
+        TripScheduleCategory $tripScheduleCategory
     ) {
         $this->tripOrder = $tripOrder;
         $this->tripCategory = $tripCategory;
@@ -55,6 +57,7 @@ class TripController extends Controller
         $this->tripPassagerType = $tripPassagerType;
         $this->tripCart = $tripCart;
         $this->tripBoardingLocation = $tripBoardingLocation;
+        $this->tripScheduleCategory = $tripScheduleCategory;
     }
     /**
      * Display a listing of the resource.

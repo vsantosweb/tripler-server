@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TripAcommodationsSeeder extends Seeder
+class TripAccommodationsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,11 +12,11 @@ class TripAcommodationsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('trip_acommodations')->insert([
+        DB::table('trip_accommodations')->insert([
             'agency_id' => 1 ,
             'name' =>  'Pousada Sunset do sul',
             'description' =>  'Lorem impsum',
-            'images' => '["image1.png","image2.png"]' 
+            'images' => '["https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg","https://www.iberian.property/media/image/2017/12/18/catalonia-a-a.jpg"]' 
         ]);
     }
 }

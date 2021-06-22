@@ -86,7 +86,7 @@ return [
 
         'agencies' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Agency\AgencyAuthenticate::class,
+            'model' => App\Models\Agency\Agency::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

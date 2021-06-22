@@ -17,7 +17,13 @@ class TripPackage extends Model
 
     public function acommodation()
     {
-        return $this->belongsTo(TripAcommodation::class, 'trip_acommodation_id');
+        return $this->belongsTo(TripAccommodation::class, 'trip_accommodation_id')->with('includedItems');
+    }
+
+    public function includedItems()
+    {
+        return $this->belongsToMany(TripIncludedItem::class,'trip_included_items_packages', 'trip_package_id','trip_included_item_id');
+
     }
 
     public function schedules()

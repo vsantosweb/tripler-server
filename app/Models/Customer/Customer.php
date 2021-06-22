@@ -11,6 +11,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\Trip\Trip;
 use App\Models\Region\Address;
 use App\Models\Trip\TripCart;
+use Illuminate\Support\Str;
 
 class Customer extends Authenticatable implements JWTSubject
 {
@@ -22,7 +23,7 @@ class Customer extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'uid',
+        'uuid',
         'name',
         'email',
         'password',
@@ -30,7 +31,6 @@ class Customer extends Authenticatable implements JWTSubject
         'cpf',
         'birthday',
         'gender',
-        'is_agency',
     ];
 
     /**
@@ -51,6 +51,7 @@ class Customer extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
