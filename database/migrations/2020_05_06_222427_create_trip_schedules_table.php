@@ -21,13 +21,14 @@ class CreateTripSchedulesTable extends Migration
             $table->unsignedInteger('trip_schedule_status_id');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->string('only_day');
+            $table->boolean('only_day')->default(0);
             $table->tinyInteger('published')->default(1);
             $table->integer('vacancies_quantity');
             $table->integer('vacancies_filled')->default(0);
             $table->double('price');
             $table->integer('discount_percent')->default(0);
             $table->integer('purchase_limit')->default(0);
+            $table->boolean('for_adults')->default(0);
 
             $table->timestamps();
 

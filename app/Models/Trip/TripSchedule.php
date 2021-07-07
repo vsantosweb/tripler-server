@@ -25,6 +25,7 @@ class TripSchedule extends Model
         'trip_tax_id',
         'discount'
     ];
+    protected $hidden = ['trip_schedule_id', 'trip_passager_type_id'];
 
     public function packages()
     {
@@ -51,9 +52,9 @@ class TripSchedule extends Model
         return $this->belongsTo(TripTax::class, 'trip_tax_id');
     }
 
-    public function passagerTypes()
+    public function passagers()
     {
-        return $this->hasMany(TripPassagerType::class);
+        return $this->belongsToMany(TripPassagerType::class, 'trip_schedules_passager_types', 'trip_schedule_id')->withPivot('amount');;
     }
 
     public function boardingLocations()

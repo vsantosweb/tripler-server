@@ -13,14 +13,27 @@ class TripPassagerTypesSeeder extends Seeder
     {
         DB::table('trip_passager_types')->insert([
             [
+                'name' => 'Adulto',
+                'slug' => 'adulto',
+                'description' => 'A partir de 18 anos'
+            ],
+            [
+                'name' => 'Menor',
+                'slug' => 'menor',
+                'description' => 'Até 17 anos'
+            ]
+        ]);
+
+        DB::table('trip_schedules_passager_types')->insert([
+            [
                 'trip_schedule_id' => 1,
-                'name' => 'Criança (5 a 10 anos)',
+                'trip_passager_type_id' => 1,
                 'amount' => 15,
             ],
             [
                 'trip_schedule_id' => 1,
-                'name' => 'Adulto (a partir de 11 anos)',
-                'amount' => 30,
+                'trip_passager_type_id' => 2,
+                'amount' => 5
             ]
         ]);
     }

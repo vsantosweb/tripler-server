@@ -20,6 +20,7 @@ class CreateTripOrderItemsTable extends Migration
             $table->double('price');
             $table->integer('quantity')->default(1);
             $table->double('discount')->default(0);
+            $table->double('total')->default(0);
             $table->integer('reward')->default(0);
             $table->timestamps();
 
