@@ -22,6 +22,7 @@ class CreateTripPackagesTable extends Migration
             $table->double('amount');
             $table->tinyInteger('shared');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('trip_accommodation_id')->references('id')->on('trip_accommodations')->onDelete('cascade');
         });

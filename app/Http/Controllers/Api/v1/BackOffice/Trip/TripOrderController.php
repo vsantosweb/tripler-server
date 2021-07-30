@@ -61,6 +61,7 @@ class TripOrderController extends TripController
             'trip_schedule_id' => $currentTripSchedule->id,
             'trip_order_id' => $newOrder->id,
             'price' => $currentTripSchedule->price,
+            'total' =>  $currentTripSchedule->price * count($request->passagers),
             'quantity' => count($request->passagers)
         ]);
 

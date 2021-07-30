@@ -15,10 +15,11 @@ class CreateTripCartsTable extends Migration
     {
         Schema::create('trip_carts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', 100)->unique();
+            $table->uuid('uuid')->unique();
             $table->string('session_id', 100)->unique();
             $table->text('cart_data')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

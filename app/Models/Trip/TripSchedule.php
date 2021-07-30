@@ -29,7 +29,7 @@ class TripSchedule extends Model
 
     public function packages()
     {
-        return $this->belongsToMany(TripPackage::class, 'trip_schedule_packages')->with(['includedItems','acommodation']);
+        return $this->belongsToMany(TripPackage::class, 'trip_schedule_packages')->with(['includedItems','accommodation']);
     }
 
     public function category()

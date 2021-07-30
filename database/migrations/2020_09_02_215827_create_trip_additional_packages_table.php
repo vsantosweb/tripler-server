@@ -22,6 +22,8 @@ class CreateTripAdditionalPackagesTable extends Migration
             $table->string('image_url')->nullable();
             $table->string('home_dir')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
             $table->foreign('trip_schedule_id')->references('id')->on('trip_schedules')->onDelete('cascade');
         });
     }

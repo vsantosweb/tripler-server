@@ -45,7 +45,7 @@ class TripController extends Controller
     ) {
         $this->tripOrder = $tripOrder;
         $this->tripCategory = $tripCategory;
-        $this->tripSchedule = $tripSchedule->with('trip', 'category', 'passagers', 'packages', 'boardingLocations', 'additionalPackages');
+        $this->tripSchedule = $tripSchedule->with('trip', 'category', 'passagers', 'packages', 'boardingLocations', 'additionalPackages','status');
         $this->tripStatus = $tripStatus;
         $this->tripTax = $tripTax;
         $this->trip = $trip;

@@ -26,6 +26,7 @@ class CreateTripsTable extends Migration
             $table->string('description')->nullable();
             $table->string('home_dir')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('trip_category_id')->references('id')->on('trip_categories')->onDelete('cascade');
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');

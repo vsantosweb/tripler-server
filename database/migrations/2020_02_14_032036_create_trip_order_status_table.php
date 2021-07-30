@@ -18,6 +18,8 @@ class CreateTripOrderStatusTable extends Migration
             $table->string('name', 100);
             $table->string('slug', 100);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

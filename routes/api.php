@@ -79,13 +79,14 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
                 });
             });
 
+            Route::post('carts', 'CustomerTripCartController@add');
+            Route::get('carts', 'CustomerTripCartController@list');
+            Route::get('carts/{code}', 'CustomerTripCartController@show');
+            Route::patch('carts/{code}', 'CustomerTripCartController@change');
+            Route::delete('carts/{code}', 'CustomerTripCartController@delete');
+
             Route::middleware('auth:customer')->group(function () {
                 Route::post('purchase-order', 'CustomerOrderController@create');
-                Route::post('carts', 'CustomerTripCartController@add');
-                Route::get('carts', 'CustomerTripCartController@list');
-                Route::get('carts/{code}', 'CustomerTripCartController@show');
-                Route::patch('carts/{code}', 'CustomerTripCartController@change');
-                Route::delete('carts/{code}', 'CustomerTripCartController@delete');
                 Route::get('carts/{code}/calculate', 'CustomerTripCartController@calculate');
             });
         });

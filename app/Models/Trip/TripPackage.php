@@ -15,7 +15,7 @@ class TripPackage extends Model
         'shared',
     ];
 
-    public function acommodation()
+    public function accommodation()
     {
         return $this->belongsTo(TripAccommodation::class, 'trip_accommodation_id')->with('includedItems');
     }

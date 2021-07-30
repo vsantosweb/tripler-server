@@ -28,12 +28,13 @@ class TripCartController extends TripController
 
         try {
 
-            return $this->tripCart->firstOrCreate([
-                'code' => sha1(microtime()),
-                'session_id' => Str::uuid(),
-                'cart_data' => str_replace(array("\r", "\n", " "), "", $request->all())
-            ])->session_id;
-
+            return $this->tripCart->firstOrCreate(
+                ['session_id' => (sha1($request->ip))],
+                [
+                    'uuid' => Str::uuid(),
+                    'cart_data' => str_replace(array("\r", "\n", " "), "", $request->all())
+                ]
+            )->session_id;
         } catch (\Exception $e) {
 
             return $e->getMessage();
@@ -50,9 +51,8 @@ class TripCartController extends TripController
     {
         try {
 
-             $tripCart = $this->tripCart->where('session_id', $session_id)->firstOrFail();
-             return  $tripCart;
-
+            $tripCart = $this->tripCart->where('session_id', $session_id)->firstOrFail();
+            return  $tripCart;
         } catch (\Exception $e) {
 
             return $e->getMessage();
@@ -77,7 +77,6 @@ class TripCartController extends TripController
             ]);
 
             return $tripCart;
-
         } catch (\Exception $e) {
 
             return $e->getMessage();
@@ -97,7 +96,6 @@ class TripCartController extends TripController
             $tripCart = $this->tripCart->where('code', $code)->delete();
 
             return $tripCart;
-
         } catch (\Exception $e) {
 
             return $e->getMessage();

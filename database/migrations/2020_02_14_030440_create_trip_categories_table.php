@@ -20,6 +20,8 @@ class CreateTripCategoriesTable extends Migration
             $table->string('slug');
             $table->string('color')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

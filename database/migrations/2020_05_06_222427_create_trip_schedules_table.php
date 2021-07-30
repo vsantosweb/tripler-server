@@ -29,6 +29,7 @@ class CreateTripSchedulesTable extends Migration
             $table->integer('discount_percent')->default(0);
             $table->integer('purchase_limit')->default(0);
             $table->boolean('for_adults')->default(0);
+            $table->softDeletes();
 
             $table->timestamps();
 

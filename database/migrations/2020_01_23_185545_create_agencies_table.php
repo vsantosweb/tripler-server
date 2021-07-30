@@ -31,6 +31,8 @@ class CreateAgenciesTable extends Migration
             $table->foreign('state_id')->references('id')->on('states');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
+
 
         });
     }

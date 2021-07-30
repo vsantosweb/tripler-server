@@ -23,6 +23,7 @@ class CreateTripOrderTransactionsTable extends Migration
             $table->string('user_agent')->nullable();
             $table->text('metadata')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('trip_order_id')->references('id')->on('trip_orders');
 

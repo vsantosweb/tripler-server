@@ -23,6 +23,7 @@ class CreateTripOrderItemsTable extends Migration
             $table->double('total')->default(0);
             $table->integer('reward')->default(0);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('trip_order_id')->references('id')->on('trip_orders')->onDelete('cascade');
             $table->foreign('trip_schedule_id')->references('id')->on('trip_schedules');

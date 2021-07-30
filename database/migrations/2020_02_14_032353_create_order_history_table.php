@@ -18,6 +18,8 @@ class CreateOrderHistoryTable extends Migration
             $table->string('invoice_id');
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

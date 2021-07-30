@@ -24,6 +24,8 @@ class CreateCouponsTable extends Migration
             $table->integer('total_used')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

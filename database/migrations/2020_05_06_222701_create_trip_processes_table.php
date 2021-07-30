@@ -26,6 +26,7 @@ class CreateTripProcessesTable extends Migration
             $table->text('trip_metadata')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('trip_schedule_id')->references('id')->on('trip_schedules');
+            $table->softDeletes();
 
             $table->timestamps();
         });

@@ -22,6 +22,8 @@ class CreateTripReviewsTable extends Migration
             $table->integer('rating');
             $table->tinyInteger('status');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

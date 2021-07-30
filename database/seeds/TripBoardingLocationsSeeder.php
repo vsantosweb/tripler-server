@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TripBoardingLocationsSeeder extends Seeder
 {
@@ -15,12 +16,14 @@ class TripBoardingLocationsSeeder extends Seeder
             [
                 'agency_id' => 1,
                 'name' => 'Term. Grajaú',
-                'slug' => 'terminal-grajau'
+                'slug' => 'terminal-grajau',
+                'departure_time' => '22:00'
             ],
             [
                 'agency_id' => 1,
                 'name' => 'Term. Varginha',
-                'slug' => 'terminal-varginha'
+                'slug' => 'terminal-varginha',
+                'departure_time' => '22:00'
             ],
         ]);
 

@@ -4,10 +4,13 @@ namespace App\Models\Trip;
 
 use App\Models\Customer\Customer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TripCart extends Model
 {
-    protected $fillable = ['customer_id', 'cart_data', 'code', 'session_id'];
+    use SoftDeletes;
+    
+    protected $fillable = ['customer_id', 'cart_data', 'uuid', 'session_id'];
 
     protected $casts = ['cart_data' => 'object'];
 

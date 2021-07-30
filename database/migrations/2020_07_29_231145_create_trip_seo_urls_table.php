@@ -18,6 +18,7 @@ class CreateTripSeoUrlsTable extends Migration
             $table->unsignedBigInteger('trip_id');
             $table->string('query')->nullable();
             $table->string('keyword');
+            $table->softDeletes();
 
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
 

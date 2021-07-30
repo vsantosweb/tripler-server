@@ -22,6 +22,7 @@ class CreateAddressesTable extends Migration
             $table->string('city')->nullable();
             $table->unsignedBigInteger('state_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
 

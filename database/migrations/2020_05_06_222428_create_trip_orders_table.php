@@ -28,6 +28,7 @@ class CreateTripOrdersTable extends Migration
             $table->date('expire_at');
             $table->string('user_agent')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('trip_order_status_id')->references('id')->on('trip_order_status');

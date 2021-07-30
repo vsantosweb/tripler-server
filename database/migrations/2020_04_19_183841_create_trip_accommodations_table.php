@@ -22,6 +22,7 @@ class CreateTripAccommodationsTable extends Migration
             $table->text('description')->nullable();
             $table->text('images')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
 

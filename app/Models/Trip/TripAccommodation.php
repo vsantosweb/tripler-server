@@ -14,6 +14,7 @@ class TripAccommodation extends Model
         'images',
         'included_items'
     ];
+    protected $casts = ['images' => 'object'];
     
     public function agency()
     {

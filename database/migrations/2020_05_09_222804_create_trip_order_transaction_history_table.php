@@ -24,8 +24,9 @@ class CreateTripOrderTransactionHistoryTable extends Migration
             $table->string('customer_cpf');
             $table->string('agency_name');
             $table->string('agency_uid');
-
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

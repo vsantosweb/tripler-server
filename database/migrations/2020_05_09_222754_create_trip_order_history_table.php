@@ -29,6 +29,8 @@ class CreateTripOrderHistoryTable extends Migration
             $table->string('payment_method');
             $table->string('boarding_location');
             $table->date('expired_at')->nullable();
+            $table->softDeletes();
+
         });
     }
 

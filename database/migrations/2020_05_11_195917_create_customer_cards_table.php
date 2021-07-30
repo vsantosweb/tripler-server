@@ -19,6 +19,7 @@ class CreateCustomerCardsTable extends Migration
             $table->string('brand')->nullable();
             $table->text('token')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });

@@ -23,6 +23,7 @@ class CreateTripFeaturesTable extends Migration
             // $table->text('itinerary')->nullable();
             // $table->text('trip_takes')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
 
