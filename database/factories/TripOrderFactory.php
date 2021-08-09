@@ -15,7 +15,7 @@ $factory->define(TripOrder::class, function (Faker $faker) {
         'boarding_location' =>  str_replace(array("\r", "\n", " "), "", 'test'),
         'trip_name' => $faker->address,
         'trip_package' => str_replace(array("\r", "\n", " "), "", 'test'),
-        'passagers' => str_replace(array("\r", "\n", " "), "", 'test'),
+        'passengers' => str_replace(array("\r", "\n", " "), "", 'test'),
         'payment_method' => 'credit_card',
         'total_amount' => mt_rand(80, 800),
         'expire_at' => now(),

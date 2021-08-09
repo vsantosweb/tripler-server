@@ -31,12 +31,12 @@
         <strong> {{ $tripOrder->trip_name }} </strong>
         <p> {{ $tripOrder->trip_package->description }} </p>
         <hr />
-        @foreach($tripOrder->passagers as $passager)
+        @foreach($tripOrder->passengers as $passenger)
         <p>
-            {{$passager->name}}<br />
-            Passageiro : <strong> {{$passager->fullName}} </strong> <br />
+            {{$passenger->name}}<br />
+            Passageiro : <strong> {{$passenger->fullName}} </strong> <br />
             <h4>Pacotes Adicionais</h4>
-            @foreach($passager->additionalPackages as $additionalPackage)
+            @foreach($passenger->additionalPackages as $additionalPackage)
             <p>
                 <h3> {{$additionalPackage->name}} </h3>
                 <p>
@@ -45,7 +45,7 @@
                 <strong> {{$additionalPackage->amount}} </strong>
             </p>
             @endforeach
-            <h4>SubTotal: {{$passager->totalAmount}}</h4> <br />
+            <h4>SubTotal: {{$passenger->totalAmount}}</h4> <br />
 
             <hr />
 

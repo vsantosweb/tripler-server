@@ -14,7 +14,7 @@ class TripOrder extends Model
         'boarding_location',
         'trip_name',
         'trip_package',
-        'passagers',
+        'passengers',
         'payment_method',
         'total_amount',
         'tax',
@@ -25,7 +25,7 @@ class TripOrder extends Model
     protected $casts = [
         'boarding_location' => 'Object',
         'trip_package' => 'Object',
-        'passagers' => 'Object',
+        'passengers' => 'Object',
     ];
 
     public function customer()

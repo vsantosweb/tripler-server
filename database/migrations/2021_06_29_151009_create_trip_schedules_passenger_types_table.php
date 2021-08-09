@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTripSchedulesPassagerTypesTable extends Migration
+class CreateTripSchedulesPassengerTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateTripSchedulesPassagerTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('trip_schedules_passager_types', function (Blueprint $table) {
+        Schema::create('trip_schedules_passenger_types', function (Blueprint $table) {
             $table->unsignedBigInteger('trip_schedule_id');
-            $table->unsignedBigInteger('trip_passager_type_id');
+            $table->unsignedBigInteger('trip_passenger_type_id');
             $table->double('amount')->default(0);
             
-            $table->primary(['trip_schedule_id', 'trip_passager_type_id'], 'schedule_to_passagers');
+            $table->primary(['trip_schedule_id', 'trip_passenger_type_id'], 'schedule_to_passengers');
             $table->foreign('trip_schedule_id')->references('id')->on('trip_schedules')->onDelete('cascade');
-            $table->foreign('trip_passager_type_id')->references('id')->on('trip_passager_types')->onDelete('cascade');
+            $table->foreign('trip_passenger_type_id')->references('id')->on('trip_passenger_types')->onDelete('cascade');
 
 
         });
@@ -33,6 +33,6 @@ class CreateTripSchedulesPassagerTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trip_schedules_passager_types');
+        Schema::dropIfExists('trip_schedules_passenger_types');
     }
 }

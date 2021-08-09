@@ -25,7 +25,7 @@ class TripSchedule extends Model
         'trip_tax_id',
         'discount'
     ];
-    protected $hidden = ['trip_schedule_id', 'trip_passager_type_id'];
+    protected $hidden = ['trip_schedule_id', 'trip_passenger_type_id'];
 
     public function packages()
     {
@@ -52,9 +52,9 @@ class TripSchedule extends Model
         return $this->belongsTo(TripTax::class, 'trip_tax_id');
     }
 
-    public function passagers()
+    public function passengers()
     {
-        return $this->belongsToMany(TripPassagerType::class, 'trip_schedules_passager_types', 'trip_schedule_id')->withPivot('amount');;
+        return $this->belongsToMany(TripPassengerType::class, 'trip_schedules_passenger_types', 'trip_schedule_id')->withPivot('amount');;
     }
 
     public function boardingLocations()
@@ -67,11 +67,11 @@ class TripSchedule extends Model
         return $this->hasMany(TripAdditionalPackage::class);
     }
 
-    public function fillVacancie($passagers)
+    public function fillVacancie($passengers)
     {
 
         if ($this->vacancies_filled < $this->vacancies_quantity) {
-            $this->vacancies_filled += count($passagers);
+            $this->vacancies_filled += count($passengers);
             $this->save();
             return true;
         }
@@ -95,9 +95,9 @@ class TripSchedule extends Model
         return $used;
     }
 
-    public function verifyPassagerVacancies($passagers){
+    public function verifypassengerVacancies($passengers){
 
-        if(($this->vacancies_filled + count($passagers)) > $this->vacancies_quantity){
+        if(($this->vacancies_filled + count($passengers)) > $this->vacancies_quantity){
             throw new \Exception('Quantidade de passageiros excede o número de vagas');
         }
     }

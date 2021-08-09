@@ -20,8 +20,8 @@ class TripProcess extends Model
         return $this->belongsTo(TripSchedule::class)->with('trip');
     }
 
-    public function passagerCheckIn(){}
-    public function passagerCheckOut(){}
+    public function passengerCheckIn(){}
+    public function passengerCheckOut(){}
 
 
 

@@ -21,7 +21,7 @@ class CreateTripOrdersTable extends Migration
             $table->string('boarding_location')->nullable();
             $table->string('trip_name')->nullable();
             $table->string('trip_package')->nullable();
-            $table->text('passagers')->nullable();
+            $table->text('passengers')->nullable();
             $table->string('payment_method')->nullable();
             $table->double('total_amount');
             $table->double('tax');

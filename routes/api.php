@@ -96,7 +96,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
                 Route::get('schedule', 'SiteTripController@schedules');
                 Route::get('schedule/categories', 'SiteTripController@scheduleCategories');
                 Route::get('schedule/{code}', 'SiteTripController@showSchedule');
-                Route::get('passager-types', 'SiteTripController@passagerTypes');
+                Route::get('passenger-types', 'SiteTripController@passengerTypes');
                 Route::get('additional-packages/{code}', 'SiteTripController@additionalPackages');
                 Route::get('trip-boarding-locations/{code}', 'SiteTripController@tripBoardingLocationList');
 

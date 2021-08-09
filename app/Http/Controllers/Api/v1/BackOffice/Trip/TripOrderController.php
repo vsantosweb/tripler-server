@@ -31,7 +31,7 @@ class TripOrderController extends TripController
 
         try {
 
-            $currentTripSchedule->fillVacancie($request->passagers);
+            $currentTripSchedule->fillVacancie($request->passengers);
         } catch (\Exception $e) {
 
             throw new \Exception($e->getMessage(), 1);
@@ -48,7 +48,7 @@ class TripOrderController extends TripController
             'boarding_location' =>  str_replace(array("\r", "\n", " "), "", $request->boarding_location),
             'trip_name' => $request->name,
             'trip_package' => str_replace(array("\r", "\n", " "), "", $request->package),
-            'passagers' => str_replace(array("\r", "\n", " "), "", $request->passagers),
+            'passengers' => str_replace(array("\r", "\n", " "), "", $request->passengers),
             'payment_method' => $request->paymentMethod['slug'],
             'total_amount' => $request->totalAmount,
             'expire_at' => now()->addDays(3),
@@ -61,8 +61,8 @@ class TripOrderController extends TripController
             'trip_schedule_id' => $currentTripSchedule->id,
             'trip_order_id' => $newOrder->id,
             'price' => $currentTripSchedule->price,
-            'total' =>  $currentTripSchedule->price * count($request->passagers),
-            'quantity' => count($request->passagers)
+            'total' =>  $currentTripSchedule->price * count($request->passengers),
+            'quantity' => count($request->passengers)
         ]);
 
         $newOrder->customer->notify(new OrderPlacedNotification($newOrder));

@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             TripOrdersSeeder::class,
             TripFeatures::class,
             TripProcesses::class,
-            TripPassagerTypesSeeder::class,
+            TripPassengerTypesSeeder::class,
             TripBoardingLocationsSeeder::class,
             TripAdditionalPackagesSeeder::class,
             TripIncludedItemsSeeder::class
