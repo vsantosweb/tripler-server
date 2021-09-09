@@ -71,8 +71,10 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
             Route::prefix('auth')->namespace('Auth')->group(function () {
                 Route::prefix('register')->group(function () {
                     Route::post('/', 'CustomerRegisterController@register');
+                    Route::post('/emailverify', 'CustomerRegisterController@registerConfirmation');
                 });
                 Route::post('login', 'CustomerAuthController@login');
+                Route::post('social-login', 'CustomerSocialLoginController@login');
                 Route::middleware('auth:customer')->group(function () {
                     Route::get('logged', 'CustomerAuthController@logged');
                     Route::post('logout', 'CustomerAuthController@logout');

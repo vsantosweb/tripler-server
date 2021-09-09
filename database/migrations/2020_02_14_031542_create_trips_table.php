@@ -17,6 +17,7 @@ class CreateTripsTable extends Migration
 
             $table->bigIncrements('id');
             $table->string('name')->nullable();
+            $table->string('slug')->nullable();
             $table->string('code', 100)->unique();
             $table->unsignedBigInteger('trip_category_id');
             $table->unsignedBigInteger('agency_id');

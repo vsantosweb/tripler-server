@@ -12,7 +12,7 @@ class TripSchedule extends Model
 
 
     protected $fillable = [
-        'uid',
+        'uuid',
         'name',
         'agency_id',
         'price',

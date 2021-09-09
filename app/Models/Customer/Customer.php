@@ -11,6 +11,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\Trip\Trip;
 use App\Models\Region\Address;
 use App\Models\Trip\TripCart;
+use App\Notifications\Auth\RegisterConfirmationEmail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class Customer extends Authenticatable implements JWTSubject
@@ -31,6 +34,8 @@ class Customer extends Authenticatable implements JWTSubject
         'cpf',
         'birthday',
         'gender',
+        'avatar',
+        'email_verified_at'
     ];
 
     /**
@@ -95,5 +100,32 @@ class Customer extends Authenticatable implements JWTSubject
     public function cart()
     {
         return $this->hasMany(TripCart::class);
+    }
+
+    public function registerConfirmationEmail()
+    {
+       $tokenData = DB::table('email_verifications')->where('email', $this->email)->first();
+
+       if(is_null($tokenData)){
+
+           DB::table('email_verifications')->insert([
+               'email' => $this->email,
+               'token' => Str::random(60),
+               'signature' => Hash::make($this->email.env('APP_KEY'))
+           ]);
+       }
+       $tokenData = DB::table('email_verifications')->where('email', $this->email)->first();
+
+       $link = env('APP_URL_EMAIL_VERIFY'). '?token='.$tokenData->token;
+
+       $this->notify(new RegisterConfirmationEmail($this, $link));
+
+       return 'Foi enviado um email para confirmação do cadastro.';
+
+    }
+
+    public function socialLogin()
+    {
+        return $this->hasMany(CustomerSocialLogin::class);
     }
 }

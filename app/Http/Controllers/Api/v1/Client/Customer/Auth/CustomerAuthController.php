@@ -15,7 +15,7 @@ class CustomerAuthController extends Controller
 
         if (!$token = auth()->guard('customer')->attempt($input)) {
 
-            return $this->outputJSON('','Invalid email or password', 'true', 401);
+            return $this->outputJSON('','Invalid email or password', true, 401);
         }
 
         return $this->outputJSON($token, '', 'false', 200);
@@ -29,11 +29,11 @@ class CustomerAuthController extends Controller
             return $this->outputJSON('','Customer logged out successfully', 'false',200);
         } catch (JWTException $exception) {
 
-            return $this->outputJSON('',$exception->getMessage(),'true', 500);
+            return $this->outputJSON('',$exception->getMessage(), true, 500);
         }
     }
     public function logged()
     {
-        return $this->outputJSON(auth()->guard('customer')->user()->with('address')->first(),'','false', 200);
+        return $this->outputJSON(auth()->user(),'', false , 200);
     }
 }

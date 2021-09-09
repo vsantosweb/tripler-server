@@ -13,6 +13,7 @@ class Trip extends Model
 
         'agency_id',
         'code',
+        'slug',
         'trip_category_id',
         'trip_status_id',
         'trip_tax_id',

@@ -7,6 +7,7 @@ use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class CustomerBackOfficeController extends Controller
 {
@@ -41,9 +42,8 @@ class CustomerBackOfficeController extends Controller
                     "email" => "bail|required|email|unique:customers",
                     "password" => "bail|required|min:8",
                     "password_confirm" => "bail|same:password",
-                    "birthday" => "bail|required|date",
                     'rg' => 'nullable',
-                    'cpf' => 'nullable',                    
+                    'cpf' => 'nullable',
                 ],
                 [
                     "required" => "O campo :attribute não pode ser nulo ou vazio.",
@@ -55,14 +55,17 @@ class CustomerBackOfficeController extends Controller
                 ]
             );
             $outputError = $validationRegisterCustomer->errors()->first();
-            
+
             if ($validationRegisterCustomer->fails()) {
                 return $this->outputJSON('', $outputError, 'true', 500);
             }
-            
-            
-            $registerCustomer = $this->customer->firstOrCreate(["uid" => strtoupper(md5($dataForRegister->email))],$dataForRegister->all());
-            
+
+
+            $registerCustomer = $this->customer->firstOrCreate(
+                ["uuid" => Str::uuid()],
+                $dataForRegister->all()
+            );
+
             if (isset($registerCustomer)) {
                 return $this->outputJSON($registerCustomer, 'Usuário cadastrado com sucesso!', 'false', 200);
             }

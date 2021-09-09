@@ -13,9 +13,9 @@ class SiteTripController extends TripController
         return $this->outputJSON($this->tripSchedule->get(), '', false, 200);
     }
 
-    public function showSchedule($code)
+    public function showSchedule($uuid)
     {
-        return $this->outputJSON($this->tripSchedule->where('code', $code)->firstOrFail(), '', false, 200);
+        return $this->outputJSON($this->tripSchedule->where('uuid', $uuid)->firstOrFail(), '', false, 200);
     }
 
     public function passengerTypes()

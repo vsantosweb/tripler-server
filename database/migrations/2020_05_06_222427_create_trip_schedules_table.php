@@ -15,7 +15,7 @@ class CreateTripSchedulesTable extends Migration
     {
         Schema::create('trip_schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', 100)->unique()->default(sha1(now().uniqid()));
+            $table->uuid('uuid');
             $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('trip_schedule_category_id');
             $table->unsignedInteger('trip_schedule_status_id');

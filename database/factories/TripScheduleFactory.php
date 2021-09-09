@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 $factory->define(TripSchedule::class, function (Faker $faker) {
 
     return [
-        'code' => Str::uuid(),
+        'uuid' => Str::uuid(),
         'trip_id' => 1,
         'trip_schedule_category_id' => mt_rand(1, 2),
         'start_date' => now(),
