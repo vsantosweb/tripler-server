@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Client\Site;
 
 use App\Http\Controllers\Api\v1\BackOffice\Trip\TripController;
+use App\Models\Trip\TripSchedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -35,7 +36,7 @@ class SiteTripController extends TripController
 
     public function scheduleCategories()
     {
-        return $this->outputJSON($this->tripScheduleCategory->with('tripSchedules')->get());
+        return $this->outputJSON($this->tripSchedulePeriod->with('tripSchedules')->get(), '', false);
     }
 
     public function schedulesByCategory($categoryCode)

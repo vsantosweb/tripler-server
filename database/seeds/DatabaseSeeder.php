@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             TripCategoriesSeeder::class,
             TripTaxesSeeder::class,
             TripStatusSeeder::class,
-            TripScheduleCategoriesSeeder::class,
+            TripSchedulePeriodsSeeder::class,
             TripsSeeder::class,
             TripScheduleStatusSeeder::class,
             TripSchedulesSeeder::class,
@@ -30,12 +30,14 @@ class DatabaseSeeder extends Seeder
             TripAccommodationsSeeder::class,
             TripPackagesSeeder::class,
             TripOrdersSeeder::class,
+            TripOrderItemPassengerSeeder::class,
             TripFeatures::class,
             TripProcesses::class,
             TripPassengerTypesSeeder::class,
             TripBoardingLocationsSeeder::class,
-            TripAdditionalPackagesSeeder::class,
-            TripIncludedItemsSeeder::class
+            TripOptionalPackagesSeeder::class,
+            TripIncludedItemsSeeder::class,
+            TripScheduleOptionalPackageSeeder::class
         ]);
     }
 }

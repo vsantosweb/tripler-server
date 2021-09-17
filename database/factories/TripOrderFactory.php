@@ -12,13 +12,16 @@ $factory->define(TripOrder::class, function (Faker $faker) {
         'code' => strtoupper(date('Y') . uniqid()),
         'customer_id' => 1,
         'trip_order_status_id' => 2,
-        'boarding_location' =>  str_replace(array("\r", "\n", " "), "", 'test'),
-        'trip_name' => $faker->address,
-        'trip_package' => str_replace(array("\r", "\n", " "), "", 'test'),
-        'passengers' => str_replace(array("\r", "\n", " "), "", 'test'),
-        'payment_method' => 'credit_card',
+        'agency_id' => 1,
+        'boarding_location' => $faker->address,
+        'distination' => $faker->city(),
+        'package' => $faker->name(),
+        'period' => $faker->word(),
+        'payment_method' => null,
+        'subtotal' => mt_rand(80, 800),
         'total_amount' => mt_rand(80, 800),
-        'expire_at' => now(),
-        'tax' => 6,
+        'discount' => 0,
+        'total_paid' => 0,
+        'expire_at' => now()->addDays(3)
     ];
 });

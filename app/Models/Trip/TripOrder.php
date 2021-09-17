@@ -10,16 +10,21 @@ class TripOrder extends Model
     protected $fillable = [
         'code',
         'customer_id',
+        'agency_id',
         'trip_order_status_id',
         'boarding_location',
-        'trip_name',
-        'trip_package',
-        'passengers',
+        'distination',
+        'package',
+        'period',
         'payment_method',
+        'subtotal',
         'total_amount',
+        'discount',
+        'total_paid',
+        'promo',
         'tax',
         'expire_at',
-        'user_agent'
+        'user_agent',
     ];
 
     protected $casts = [

@@ -32,9 +32,9 @@ class TripSchedule extends Model
         return $this->belongsToMany(TripPackage::class, 'trip_schedule_packages')->with(['includedItems','accommodation']);
     }
 
-    public function category()
+    public function period()
     {
-        return $this->belongsTo(TripScheduleCategory::class, 'trip_schedule_category_id');
+        return $this->belongsTo(TripSchedulePeriod::class, 'trip_schedule_period_id');
     }
 
     public function trip()
@@ -54,7 +54,7 @@ class TripSchedule extends Model
 
     public function passengers()
     {
-        return $this->belongsToMany(TripPassengerType::class, 'trip_schedules_passenger_types', 'trip_schedule_id')->withPivot('amount');;
+        return $this->belongsToMany(TripPassengerType::class, 'trip_schedule_passenger_types', 'trip_schedule_id')->withPivot('amount', 'quantity');
     }
 
     public function boardingLocations()
@@ -64,7 +64,12 @@ class TripSchedule extends Model
 
     public function additionalPackages()
     {
-        return $this->hasMany(TripAdditionalPackage::class);
+        return $this->hasMany(TripOptionalPackage::class, 'trip_schedule_id');
+    }
+
+    public function optionalPackages()
+    {
+        return $this->hasMany(TripScheduleOptionalPackage::class)->with('package');
     }
 
     public function fillVacancie($passengers)

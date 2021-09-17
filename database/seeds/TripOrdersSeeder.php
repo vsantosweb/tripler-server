@@ -2,6 +2,7 @@
 
 use App\Models\Trip\TripOrder;
 use App\Models\Trip\TripOrderItem;
+use App\Models\Trip\TripOrderItemPassenger;
 use Illuminate\Database\Seeder;
 
 class TripOrdersSeeder extends Seeder
@@ -14,8 +15,8 @@ class TripOrdersSeeder extends Seeder
     public function run()
     {
 
-        factory(TripOrder::class, 3)->create()->each(function($order){
-            $orderItem = factory(App\Models\Trip\TripOrderItem::class,1)->make();
+        factory(TripOrder::class, 3)->create()->each(function ($order) {
+            $orderItem = factory(App\Models\Trip\TripOrderItem::class, 1)->make();
             $order->tripOrderItem()->saveMany($orderItem);
         });
     }

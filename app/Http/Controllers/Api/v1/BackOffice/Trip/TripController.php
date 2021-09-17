@@ -15,7 +15,7 @@ use App\Models\Trip\TripOrderTransaction;
 use App\Models\Trip\TripOrderTransictionHistory;
 use App\Models\Trip\TripPassengerType;
 use App\Models\Trip\TripSchedule;
-use App\Models\Trip\TripScheduleCategory;
+use App\Models\Trip\TripSchedulePeriod;
 use App\Models\Trip\TripSeoUrl;
 use App\Models\Trip\TripStatus;
 use App\Models\Trip\TripTax;
@@ -41,23 +41,31 @@ class TripController extends Controller
         TripCart $tripCart,
         Customer $customer,
         TripBoardingLocation $tripBoardingLocation,
-        TripScheduleCategory $tripScheduleCategory
+        TripSchedulePeriod $tripSchedulePeriod
     ) {
         $this->tripOrder = $tripOrder;
         $this->tripCategory = $tripCategory;
-        $this->tripSchedule = $tripSchedule->with('trip', 'category', 'passengers', 'packages', 'boardingLocations', 'additionalPackages','status');
+        $this->tripSchedule = $tripSchedule->with(
+            'trip',
+            'period',
+            'passengers',
+            'packages',
+            'boardingLocations',
+            'optionalPackages',
+            'status'
+        );
         $this->tripStatus = $tripStatus;
         $this->tripTax = $tripTax;
         $this->trip = $trip;
         $this->tripOrderTransaction = $tripOrderTransaction;
-        $this->$tripOrderHistory = $tripOrderHistory;
+        $this->tripOrderHistory = $tripOrderHistory;
         $this->tripOrderTransictionHistory = $tripOrderTransictionHistory;
         $this->tripSeoUrl = $tripSeoUrl;
         $this->customer = $customer;
         $this->tripPassengerType = $tripPassegengerType;
         $this->tripCart = $tripCart;
         $this->tripBoardingLocation = $tripBoardingLocation;
-        $this->tripScheduleCategory = $tripScheduleCategory;
+        $this->tripSchedulePeriod = $tripSchedulePeriod;
     }
     /**
      * Display a listing of the resource.

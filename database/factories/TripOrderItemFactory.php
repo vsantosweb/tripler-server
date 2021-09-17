@@ -10,6 +10,7 @@ $factory->define(TripOrderItem::class, function (Faker $faker) {
     return [
         'trip_schedule_id' => 1,
         'price' => mt_rand(80, 700),
-        'quantity' => mt_rand(1, 6)
+        'quantity' => mt_rand(1, 10),
+        'total'=>  mt_rand(80, 700),
     ];
 });

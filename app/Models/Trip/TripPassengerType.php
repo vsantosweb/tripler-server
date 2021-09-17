@@ -11,6 +11,6 @@ class TripPassengerType extends Model
     
     public function schedules()
     {
-        return $this->belongsToMany(TripSchedule::class, 'trip_schedules_passenger_types', 'trip_passenger_type_id')->withPivot('amount');
+        return $this->belongsToMany(TripSchedule::class, 'trip_schedule_passenger_types', 'trip_passenger_type_id')->withPivot('amount');
     }
 }

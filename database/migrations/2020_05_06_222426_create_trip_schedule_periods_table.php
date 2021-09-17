@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTripScheduleCategoriesTable extends Migration
+class CreateTripSchedulePeriodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateTripScheduleCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('trip_schedule_categories', function (Blueprint $table) {
+        Schema::create('trip_schedule_periods', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', 100)->unique();
+            $table->uuid('uuid')->unique();
             $table->string('name');
             $table->string('slug');
-            $table->string('color')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-
         });
     }
 
@@ -32,6 +28,6 @@ class CreateTripScheduleCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trip_schedule_categories');
+        Schema::dropIfExists('trip_schedule_periods');
     }
 }

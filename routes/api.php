@@ -92,16 +92,16 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
                 Route::get('carts/{code}/calculate', 'CustomerTripCartController@calculate');
             });
         });
+
         /* Public  Routes */
         Route::prefix('public')->namespace('Site')->group(function () {
             Route::prefix('trip')->group(function () {
                 Route::get('schedule', 'SiteTripController@schedules');
                 Route::get('schedule/categories', 'SiteTripController@scheduleCategories');
-                Route::get('schedule/{code}', 'SiteTripController@showSchedule');
+                Route::get('schedule/{uuid}', 'SiteTripController@showSchedule');
                 Route::get('passenger-types', 'SiteTripController@passengerTypes');
                 Route::get('additional-packages/{code}', 'SiteTripController@additionalPackages');
                 Route::get('trip-boarding-locations/{code}', 'SiteTripController@tripBoardingLocationList');
-
                 Route::get('categories', 'SiteTripController@tripCategeories');
                 Route::get('categories/{categoryCode}', 'SiteTripController@schedulesByCategory');
             });

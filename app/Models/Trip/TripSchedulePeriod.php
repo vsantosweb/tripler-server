@@ -4,7 +4,7 @@ namespace App\Models\Trip;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TripScheduleCategory extends Model
+class TripSchedulePeriod extends Model
 {
     protected $fillable = ['name', 'slug'];
 

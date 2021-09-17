@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTripAdditionalPackagesTable extends Migration
+class CreateTripSchedulePassengerTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateTripAdditionalPackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('trip_additional_packages', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
+        Schema::create('trip_schedule_passenger_types', function (Blueprint $table) {
             $table->unsignedBigInteger('trip_schedule_id');
-            $table->text('description')->nullable();
+            $table->unsignedBigInteger('trip_passenger_type_id');
             $table->double('amount')->default(0);
-            $table->string('image_url')->nullable();
-            $table->string('home_dir')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-
+            $table->integer('quantity');
+            
+            $table->primary(['trip_schedule_id', 'trip_passenger_type_id'], 'schedule_to_passengers');
             $table->foreign('trip_schedule_id')->references('id')->on('trip_schedules')->onDelete('cascade');
+            $table->foreign('trip_passenger_type_id')->references('id')->on('trip_passenger_types')->onDelete('cascade');
+
+
         });
     }
 
@@ -35,6 +34,6 @@ class CreateTripAdditionalPackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trip_additional_packages');
+        Schema::dropIfExists('trip_schedule_passenger_types');
     }
 }

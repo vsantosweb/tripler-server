@@ -17,20 +17,28 @@ class CreateTripOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('code', 70)->unique();
             $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('agency_id');
             $table->unsignedBigInteger('trip_order_status_id');
             $table->string('boarding_location')->nullable();
-            $table->string('trip_name')->nullable();
-            $table->string('trip_package')->nullable();
-            $table->text('passengers')->nullable();
+            $table->string('distination')->nullable();
+            $table->string('package')->nullable();
+            $table->string('period')->nullable();
+            $table->text('accomodation')->nullable();
             $table->string('payment_method')->nullable();
+            $table->double('subtotal')->nullable();
             $table->double('total_amount');
-            $table->double('tax');
-            $table->date('expire_at');
+            $table->double('discount')->default(0);
+            $table->double('total_paid')->default(0);
+            $table->string('promo')->nullable();
+            $table->double('tax')->default(0);
+            $table->timestamp('expire_at');
             $table->string('user_agent')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('agency_id')->references('id')->on('agencies');
+
             $table->foreign('trip_order_status_id')->references('id')->on('trip_order_status');
         });
     }

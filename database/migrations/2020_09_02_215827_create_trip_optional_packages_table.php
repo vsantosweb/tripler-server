@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTripAccommodationsTable extends Migration
+class CreateTripOptionalPackagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,18 @@ class CreateTripAccommodationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('trip_accommodations', function (Blueprint $table) {
-            $table->id();
+        Schema::create('trip_optional_packages', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('agency_id');
             $table->string('name');
-            $table->string('site_url')->nullable();
-            $table->string('address')->nullable();
-            $table->string('geolocation')->nullable();
             $table->text('description')->nullable();
-            $table->text('images')->nullable();
+            $table->double('base_price')->default(0);
+            $table->text('thumbnail')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
-
+            
         });
     }
 
@@ -37,6 +35,6 @@ class CreateTripAccommodationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trip_accommodations');
+        Schema::dropIfExists('trip_optional_packages');
     }
 }

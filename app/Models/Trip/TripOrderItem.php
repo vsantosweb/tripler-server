@@ -10,8 +10,9 @@ class TripOrderItem extends Model
         'trip_order_id',
         'trip_schedule_id',
         'price',
-        'discount',
         'quantity',
+        'discount',
+        'total',
         'reward',
     ];
 
@@ -23,5 +24,10 @@ class TripOrderItem extends Model
     public function tripSchedule()
     {
         return $this->belongsTo(TripSchedule::class)->with('trip');
+    }
+
+    public function passengers()
+    {
+        return $this->hasMany(TripOrderItemPassenger::class);
     }
 }
