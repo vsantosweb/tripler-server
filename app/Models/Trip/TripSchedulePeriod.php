@@ -10,6 +10,6 @@ class TripSchedulePeriod extends Model
 
     public function tripSchedules()
     {
-        return $this->hasMany(TripSchedule::class)->with('trip');
+        return $this->hasMany(TripSchedule::class)->with('trip','roadmap');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1\Client\Agency\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AgencyAuthController extends Controller
 {

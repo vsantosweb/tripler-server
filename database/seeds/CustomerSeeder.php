@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Customer\Customer;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -12,6 +13,8 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
+        factory(Customer::class, 15)->create();
+
         DB::table('customers')->insert([
 
             [
@@ -43,7 +46,7 @@ class CustomerSeeder extends Seeder
             ],
         ]);
 
-        DB::table('addresses')->insert([
+        DB::table('customer_addresses')->insert([
             'customer_id' => 1,
             'address_1' => 'Rua andorinhas, 40',
             'address_2' => 'Santo Amaro',

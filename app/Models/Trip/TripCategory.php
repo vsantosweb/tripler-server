@@ -10,6 +10,6 @@ class TripCategory extends Model
 
     public function trips()
     {
-        return $this->hasMany(Trip::class)->with('schedules');
+        return $this->hasMany(Trip::class);
     }
 }

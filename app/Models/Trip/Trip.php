@@ -12,14 +12,14 @@ class Trip extends Model
     protected $fillable = [
 
         'agency_id',
-        'code',
+        'uuid',
         'slug',
         'trip_category_id',
         'trip_status_id',
         'trip_tax_id',
         'name',
-        'image',
-        'image_url',
+        'images',
+        'thumbnail',
         'price',
         'start_date',
         'end_date',
@@ -29,6 +29,8 @@ class Trip extends Model
         'home_dir'
 
     ];
+
+    protected $casts = ['images' => 'array'];
 
     public function agency()
     {
@@ -40,7 +42,7 @@ class Trip extends Model
     }
     public function schedules()
     {
-        return $this->hasMany(TripSchedule::class)->with('category', 'status');
+        return $this->hasMany(TripSchedule::class);
     }
 
     public function status()
@@ -56,6 +58,18 @@ class Trip extends Model
     public function feature()
     {
         return $this->hasOne(TripFeature::class);
+    }
+
+
+
+    public function tripTakes()
+    {
+        return $this->hasMany(TripTake::class);
+    }
+
+    public function tripTake()
+    {
+        return $this->hasOne(TripTake::class)->with('items')->where('default', true);
     }
 
     public function fillVacancie()

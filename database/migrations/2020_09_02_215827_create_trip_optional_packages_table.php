@@ -19,7 +19,7 @@ class CreateTripOptionalPackagesTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->double('base_price')->default(0);
-            $table->text('thumbnail')->nullable();
+            $table->text('images')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -17,7 +17,6 @@ class CreateTripBoardingLocationsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('agency_id');
             $table->string('name');
-            $table->time('departure_time');
             $table->string('slug')->nullable();
 
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');

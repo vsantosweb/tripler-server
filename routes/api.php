@@ -81,20 +81,29 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
                 });
             });
 
-            Route::post('carts', 'CustomerTripCartController@add');
-            Route::get('carts', 'CustomerTripCartController@list');
-            Route::get('carts/{code}', 'CustomerTripCartController@show');
-            Route::patch('carts/{code}', 'CustomerTripCartController@change');
-            Route::delete('carts/{code}', 'CustomerTripCartController@delete');
+           
 
             Route::middleware('auth:customer')->group(function () {
-                Route::post('purchase-order', 'CustomerOrderController@create');
+                
+                Route::post('carts', 'CustomerTripCartController@add');
+                Route::get('carts', 'CustomerTripCartController@list');
+                Route::get('carts/{code}', 'CustomerTripCartController@show');
+                Route::patch('carts/{code}', 'CustomerTripCartController@change');
+                Route::delete('carts/{code}', 'CustomerTripCartController@delete');
+
+                Route::post('orders', 'CustomerOrderController@create');
+                Route::get('orders', 'CustomerOrderController@index');
+                Route::get('orders/{code}', 'CustomerOrderController@show');
+                Route::post('orders/payment', 'CustomerOrderController@payment');
+
                 Route::get('carts/{code}/calculate', 'CustomerTripCartController@calculate');
             });
         });
 
         /* Public  Routes */
         Route::prefix('public')->namespace('Site')->group(function () {
+            Route::get('trips-by-category', 'SiteTripController@tripsByCategory');
+            Route::get('trips/{uuid}', 'SiteTripController@show');
             Route::prefix('trip')->group(function () {
                 Route::get('schedule', 'SiteTripController@schedules');
                 Route::get('schedule/categories', 'SiteTripController@scheduleCategories');

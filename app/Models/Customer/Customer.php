@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Models\Agency\Agency;
+use App\Models\Order\Order;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -89,7 +90,7 @@ class Customer extends Authenticatable implements JWTSubject
 
     public function address()
     {
-        return $this->hasOne(Address::class)->with('state');
+        return $this->hasOne(CustomerAddress::class)->with('state');
     }
 
     public function agencyOwner()
@@ -99,7 +100,12 @@ class Customer extends Authenticatable implements JWTSubject
 
     public function cart()
     {
-        return $this->hasMany(TripCart::class);
+        return $this->hasOne(TripCart::class)->with('tripSchedule');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class)->with('ticket');
     }
 
     public function registerConfirmationEmail()

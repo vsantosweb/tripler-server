@@ -9,7 +9,13 @@ class CustomerCards extends Model
     protected $fillable = [
         'customer_id',
         'brand',
-        'hash'
+        'token',
+        'first_digits',
+        'last_digits',
+        'fingerprint',
+        'expiration_date',
+        'valid',
+        'default'
     ];
 
     public function customer()

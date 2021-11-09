@@ -16,7 +16,7 @@ class CreateTripTaxesTable extends Migration
         Schema::create('trip_taxes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->decimal('percent_tax', 8, 2)->default(0);
+            $table->double('percent_tax')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

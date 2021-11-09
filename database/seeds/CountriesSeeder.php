@@ -41,7 +41,7 @@ class CountriesSeeder extends Seeder
             array('name' => 'Bosnia and Herzegovina', 'iso_code_2' => 'BA', 'iso_code_3' => 'BIH'),
             array('name' => 'Botswana', 'iso_code_2' => 'BW', 'iso_code_3' => 'BWA'),
             array('name' => 'Bouvet Island', 'iso_code_2' => 'BV', 'iso_code_3' => 'BVT'),
-            array('name' => 'Brazil', 'iso_code_2' => 'BR', 'iso_code_3' => 'BRA'),
+            array('name' => 'Brasil', 'iso_code_2' => 'BR', 'iso_code_3' => 'BRA'),
             array('name' => 'British Indian Ocean Territory', 'iso_code_2' => 'IO', 'iso_code_3' => 'IOT'),
             array('name' => 'Brunei Darussalam', 'iso_code_2' => 'BN', 'iso_code_3' => 'BRN'),
             array('name' => 'Bulgaria', 'iso_code_2' => 'BG', 'iso_code_3' => 'BGR'),

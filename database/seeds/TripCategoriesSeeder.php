@@ -21,7 +21,6 @@ class TripCategoriesSeeder extends Seeder
                 'color' => '#ff8507'
 
             ],
-
             [
                 'code' => Str::uuid(),
                 'name' => 'Praias',
@@ -40,7 +39,12 @@ class TripCategoriesSeeder extends Seeder
                 'name' => 'Eventos',
                 'slug' => 'eventos',
                 'color' => '#eee'
-
+            ],
+            [
+                'code' => Str::uuid(),
+                'name' => 'Parques',
+                'slug' => 'parques',
+                'color' => '#eee'
             ],
 
         ]);

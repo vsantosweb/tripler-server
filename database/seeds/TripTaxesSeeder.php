@@ -11,8 +11,19 @@ class TripTaxesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('trip_taxes')->insert([
-            'percent_tax' => 10
-        ]);
+        DB::table('trip_taxes')->insert(
+            [
+                'name' => 'Free',
+                'percent_tax' => 0
+            ],
+            [
+                'name' => 'Standard',
+                'percent_tax' => 8
+            ],
+            [
+                'name' => 'Premium',
+                'percent_tax' => 10
+            ]
+        );
     }
 }

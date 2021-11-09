@@ -2,7 +2,7 @@
 
 namespace App\Notifications\Order;
 
-use App\Models\Trip\TripOrder;
+use App\Models\Order\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -18,11 +18,11 @@ class OrderPlacedNotification extends Notification
      * @return void
      */
 
-     protected $tripOrder;
+     protected $order;
 
-    public function __construct(TripOrder $tripOrder)
+    public function __construct(Order $order)
     {
-        $this->tripOrder = $tripOrder;
+        $this->order = $order;
     }
 
     /**
@@ -44,7 +44,8 @@ class OrderPlacedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->view('mails.orders.orderPlaced', ['tripOrder' => $this->tripOrder]);
+        return (new MailMessage)->view('mails.orders.orderPlaced', ['order' => $this->order])
+        ->subject('Confirmação de Reserva - '. $this->order->payment_method);
     }
 
     /**

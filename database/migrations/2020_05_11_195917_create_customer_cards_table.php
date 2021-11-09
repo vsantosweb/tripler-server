@@ -18,6 +18,13 @@ class CreateCustomerCardsTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->string('brand')->nullable();
             $table->text('token')->nullable();
+            $table->string('first_digits')->nullable();
+            $table->string('last_digits')->nullable();
+            $table->string('fingerprint')->nullable();
+            $table->string('expiration_date')->nullable();
+            $table->boolean('valid')->nullable();
+            $table->boolean('default')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
 

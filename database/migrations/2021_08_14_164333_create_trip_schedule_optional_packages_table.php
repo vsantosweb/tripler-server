@@ -17,8 +17,6 @@ class CreateTripScheduleOptionalPackagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('trip_schedule_id');
             $table->unsignedBigInteger('trip_optional_package_id');
-            $table->text('thumbnail')->nullable();
-            $table->text('gallery')->nullable();
             $table->double('price');
             $table->double('quantity');
             

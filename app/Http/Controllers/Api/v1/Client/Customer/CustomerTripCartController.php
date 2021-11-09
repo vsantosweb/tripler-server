@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\v1\Client\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Trip\TripCart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CustomerTripCartController extends CustomerController
 {
@@ -14,12 +16,21 @@ class CustomerTripCartController extends CustomerController
 
     public function add(Request $request)
     {
-        return $this->outputJSON($this->tripCart->store($request), '', false, 201);
+        $cart = auth()->user()->cart()->updateOrCreate(
+            ['session' => md5(auth()->user()->email . auth()->user()->id)],
+            [
+                'trip_schedule_id' => $request->trip_schedule_id,
+                'tickets' => $request->tickets,
+                'boarding' => $request->boarding
+            ]
+        );
+
+        return $this->outputJSON($cart->session, '', false, 201);
     }
 
-    public function show($code)
+    public function show($session)
     {
-        return $this->outputJSON($this->tripCart->show($code), '', false, 200);
+        return $this->outputJSON(auth()->user()->cart()->where('session', $session)->firstOrFail(), '', false, 200);
     }
 
     public function change(Request $request, $code)
@@ -30,7 +41,6 @@ class CustomerTripCartController extends CustomerController
     public function delete($code)
     {
         return $this->outputJSON($this->tripCart->destroy($code), '', false, 200);
-
     }
 
     public function calculate($code)

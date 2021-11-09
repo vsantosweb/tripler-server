@@ -14,12 +14,12 @@ class CreateTripSchedulePassengerTypesTable extends Migration
     public function up()
     {
         Schema::create('trip_schedule_passenger_types', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('trip_schedule_id');
             $table->unsignedBigInteger('trip_passenger_type_id');
             $table->double('amount')->default(0);
-            $table->integer('quantity');
             
-            $table->primary(['trip_schedule_id', 'trip_passenger_type_id'], 'schedule_to_passengers');
+            // $table->primary(['trip_schedule_id', 'trip_passenger_type_id'], 'schedule_to_passengers');
             $table->foreign('trip_schedule_id')->references('id')->on('trip_schedules')->onDelete('cascade');
             $table->foreign('trip_passenger_type_id')->references('id')->on('trip_passenger_types')->onDelete('cascade');
 

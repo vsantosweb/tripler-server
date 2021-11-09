@@ -16,15 +16,15 @@ class CreateTripsTable extends Migration
         Schema::create('trips', function (Blueprint $table) {
 
             $table->bigIncrements('id');
+            $table->uuid('uuid')->unique();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->string('code', 100)->unique();
             $table->unsignedBigInteger('trip_category_id');
             $table->unsignedBigInteger('agency_id');
             $table->unsignedInteger('trip_status_id');
-            $table->string('image')->nullable();
-            $table->string('image_url')->nullable();
-            $table->string('description')->nullable();
+            $table->string('images')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->text('description')->nullable();
             $table->string('home_dir')->nullable();
             $table->timestamps();
             $table->softDeletes();
