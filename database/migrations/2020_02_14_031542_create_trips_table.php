@@ -20,6 +20,7 @@ class CreateTripsTable extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->unsignedBigInteger('trip_category_id');
+
             $table->unsignedBigInteger('agency_id');
             $table->unsignedInteger('trip_status_id');
             $table->string('images')->nullable();
@@ -29,7 +30,8 @@ class CreateTripsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('trip_category_id')->references('id')->on('trip_categories')->onDelete('cascade');
+            $table->foreign('trip_category_id')->references('id')->on('trip_categories');
+
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('trip_status_id')->references('id')->on('trip_status');
 

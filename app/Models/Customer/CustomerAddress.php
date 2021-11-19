@@ -12,8 +12,9 @@ class CustomerAddress extends Model
         'address_1',
         'address_2',
         'postcode',
+        'number',
         'city',
-        'state_id',
+        'state',
     ];
 
     public function customer()

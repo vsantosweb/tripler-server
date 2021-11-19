@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             StatesSeeder::class,
             CitiesTableSeeder::class,
             // AddressSeeder::class,
+            AgencyTypeSeeder::class,
             AgenciesSeeder::class,
             TripCategoriesSeeder::class,
             TripTaxesSeeder::class,
@@ -28,7 +29,7 @@ class DatabaseSeeder extends Seeder
             TripScheduleStatusSeeder::class,
             TripPassengerTypesSeeder::class,
             TripBoardingLocationsSeeder::class,
-
+            TripScheduleTypeSeeder::class,
             TripsSeeder::class,
             TripAccommodationsSeeder::class,
             TripPackagesSeeder::class,

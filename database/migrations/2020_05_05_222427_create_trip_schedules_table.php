@@ -18,6 +18,7 @@ class CreateTripSchedulesTable extends Migration
             $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('trip_schedule_period_id');
+            $table->unsignedBigInteger('trip_schedule_type_id');
             $table->unsignedBigInteger('trip_schedule_cancellation_model_id')->default(1);
             $table->unsignedInteger('trip_schedule_status_id');
             $table->dateTime('start_date');
@@ -36,6 +37,7 @@ class CreateTripSchedulesTable extends Migration
             $table->timestamps();
 
             $table->foreign('trip_schedule_period_id')->references('id')->on('trip_schedule_periods');
+            $table->foreign('trip_schedule_type_id')->references('id')->on('trip_schedule_types');
             $table->foreign('trip_schedule_cancellation_model_id')->references('id')->on('trip_schedule_cancellation_models');
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
             $table->foreign('trip_schedule_status_id')->references('id')->on('trip_schedule_status');

@@ -19,7 +19,7 @@ class CreateBookingsTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('agency_id');
             $table->unsignedBigInteger('trip_schedule_id');
-            $table->tinyInteger('status')->default(3)->comment('0 CANCELED | 1 PAID | 2 PROCESSING | 3 OPPENED ');
+            $table->unsignedBigInteger('booking_status_id');
             $table->boolean('is_package');
             $table->timestamp('check_in_date')->nullable();
             $table->timestamp('check_out_date')->nullable();
@@ -32,13 +32,19 @@ class CreateBookingsTable extends Migration
             $table->double('amount_paid')->default(0);
             $table->boolean('is_refund')->default(0);
             $table->double('refund_paid')->default(0);
+            $table->boolean('accepted_terms')->default(0);
             $table->timestamp('expire_at');
+            $table->string('ip')->nullable();
+            $table->string('user_agent')->nullable();
+            $table->string('geo_location')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('agency_id')->references('id')->on('agencies');
             $table->foreign('trip_schedule_id')->references('id')->on('trip_schedules');
+            $table->foreign('booking_status_id')->references('id')->on('booking_statuses');
+
         });
     }
 

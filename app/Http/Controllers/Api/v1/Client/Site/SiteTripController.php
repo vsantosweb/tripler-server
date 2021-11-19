@@ -39,10 +39,7 @@ class SiteTripController extends TripController
 
     public function showSchedule($uuid)
     {
-
         return $this->outputJSON(new TripScheduleResource(TripSchedule::where('uuid', $uuid)->firstOrFail()), '', false, 200);
-
-        // return $this->outputJSON(new TripScheduleResource(TripSchedule::where('uuid', $uuid)->firstOrFail()), '', false, 200);
     }
 
     public function passengerTypes()

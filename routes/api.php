@@ -97,6 +97,12 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
                 Route::post('orders/payment', 'CustomerOrderController@payment');
 
                 Route::get('carts/{code}/calculate', 'CustomerTripCartController@calculate');
+
+                Route::post('booking', 'CustomerBookingController@createBooking');
+                Route::patch('booking/{booking_code}/confirm', 'CustomerBookingController@confirmBooking');
+                Route::post('booking/{booking_code}/payment', 'CustomerBookingController@bookingPayment');
+                Route::delete('booking/{booking_code}/cancel-by-customer', 'CustomerBookingController@bookingCancelByCustomer');
+
             });
         });
 
@@ -125,7 +131,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
 
     Route::prefix('postback')->group(function () {
         Route::namespace('Client\Customer')->group(function () {
-            Route::post('order', 'CustomerOrderController@postBackOrder');
+            Route::post('booking-transaction', 'CustomerBookingController@getPostbackTransaction');
         });
     });
 });

@@ -15,14 +15,16 @@ class CreateBookingItemsTable extends Migration
     {
         Schema::create('booking_items', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('passenger_type_id');
             $table->unsignedBigInteger('boarding_location_id');
-            $table->string('name');
-            $table->string('email')->nullable();;
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
             $table->string('document')->nullable();;
             $table->string('phone')->nullable();
             $table->string('birthday')->nullable();
+            $table->double('price_fee')->default(0);
             $table->double('total_amount')->default(0);
             $table->timestamps();
 

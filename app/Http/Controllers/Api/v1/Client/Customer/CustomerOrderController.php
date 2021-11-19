@@ -173,6 +173,8 @@ class CustomerOrderController extends CustomerController
 
     public function postBackOrder(Request $request)
     {
+        return $request->all();
+        
         $tripOrder = TripOrder::where('code',  $request['transaction[customer][external_id]'])->first();
 
         $newTransaction = TripOrderTransaction::firstOrCreate([

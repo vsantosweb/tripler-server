@@ -11,7 +11,6 @@ $factory->define(Booking::class, function (Faker $faker) {
         'customer_id' => 2,
         'agency_id' => 1,
         // 'trip_schedule_id' => '',
-        'status' => 3,
         'is_package' => 0,
         // 'check_in_date' => '',
         // 'check_out_date' => '',

@@ -15,6 +15,7 @@ class CreateTripSchedulePassengerTypesTable extends Migration
     {
         Schema::create('trip_schedule_passenger_types', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('trip_schedule_id');
             $table->unsignedBigInteger('trip_passenger_type_id');
             $table->double('amount')->default(0);

@@ -16,9 +16,10 @@ class AgenciesSeeder extends Seeder
 
             'name' => 'Mario Bross Turismo LTDA',
             'email' => 'mturimos@mturismo.com',
+            'agency_type_id' => 2,
             'password' => Hash::make('password'),
             'phone' => '15454555',
-            'uid' => '564564878000158',
+            'uuid' => '564564878000158',
             'state_id'=> 1,
             'home_dir' => 'agencies/'. md5(microtime())
         ]);

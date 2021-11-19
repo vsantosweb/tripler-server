@@ -9,6 +9,7 @@ use App\Models\Trip\TripRoadmapStep;
 use App\Models\Trip\TripRoadmapStepValue;
 use App\Models\Trip\TripSchedule;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class TripsSeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class TripsSeeder extends Seeder
 
         factory(Trip::class, 15)->create()->each(function ($trip) {
 
-            factory(TripSchedule::class, mt_rand(2,4))->create(['trip_id' => $trip->id])->each(function ($tripSchedule) {
+            factory(TripSchedule::class, mt_rand(2, 4))->create(['trip_id' => $trip->id])->each(function ($tripSchedule) {
 
                 factory(TripRequirement::class, 1)->create(['trip_schedule_id' => $tripSchedule->id])->each(function ($tripRequirement) {
                     factory(TripRequirementItem::class, mt_rand(2, 7))->create(['trip_requirement_id' => $tripRequirement->id]);
@@ -35,9 +36,9 @@ class TripsSeeder extends Seeder
                     });
                 });
 
-                $tripSchedule->passengers()->attach([1 => ['amount' => mt_rand(10, 35)], 2 => ['amount' => mt_rand(2, 15)]]);
+                $tripSchedule->passengers()->attach([1 => ['uuid' => Str::uuid(), 'amount' => mt_rand(10, 35)], 2 => ['uuid' => Str::uuid(), 'amount' => mt_rand(2, 15)]]);
 
-                $tripSchedule->boardingLocations()->attach([1, 2], ['departure_time' => mt_rand(19, 23) . ':00:00']);
+                $tripSchedule->boardings()->attach([1, 2], ['uuid' => Str::uuid(), 'departure_time' => mt_rand(19, 23) . ':00:00']);
             });
         });
 

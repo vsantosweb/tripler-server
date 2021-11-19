@@ -20,11 +20,15 @@ class TripSchedulePeriodsSeeder extends Seeder
                 'name' => 'Bate & Volta',
                 'slug' => 'bate-volta',
             ],
-
             [
                 'uuid' => Str::uuid(),
                 'name' => 'Fim de Semana',
                 'slug' => 'fim-de-semana',
+            ],
+            [
+                'uuid' => Str::uuid(),
+                'name' => 'Day use',
+                'slug' => 'day-use',
             ],
             [
                 'uuid' => Str::uuid(),

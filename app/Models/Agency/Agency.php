@@ -48,4 +48,9 @@ class Agency extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(AgencyAuthenticate::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(AgencyType::class,'agency_type_id');
+    }
 }

@@ -20,6 +20,7 @@ class TripSchedule extends Model
         'price',
         'trip_id',
         'event_date',
+        'trip_schedule_type_id',
         'start_date',
         'vacancies_quantity',
         'vacancies_filled',
@@ -57,10 +58,15 @@ class TripSchedule extends Model
     {
         return $this->hasOne(TripRoadmap::class)->with('steps');
     }
-
+    
     public function status()
     {
         return $this->belongsTo(TripScheduleStatus::class, 'trip_schedule_status_id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(TripScheduleType::class, 'trip_schedule_type_id');
     }
 
     public function tax()
@@ -70,10 +76,10 @@ class TripSchedule extends Model
 
     public function passengers()
     {
-        return $this->belongsToMany(TripPassengerType::class, 'trip_schedule_passenger_types', 'trip_schedule_id')->withPivot('id','amount');
+        return $this->belongsToMany(TripPassengerType::class, 'trip_schedule_passenger_types', 'trip_schedule_id')->withPivot('uuid', 'id', 'amount');
     }
 
-    public function boardingLocations()
+    public function boardings()
     {
         return $this->belongsToMany(TripBoardingLocation::class, 'trip_schedule_boardings', 'trip_schedule_id', 'trip_boarding_id');
     }
@@ -86,6 +92,17 @@ class TripSchedule extends Model
     public function optionalPackages()
     {
         return $this->hasMany(TripScheduleOptionalPackage::class)->with('package');
+    }
+
+    /**
+     * Verifica disponibilidade do agendamento
+     * @return boolean 
+     */
+
+    public function checkAvaiability(array $passengers)
+    {
+        if (count($passengers) > $this->vacancies_quantity) throw new Exception("Error Processing Request: vacancies_quantity", 1);
+        if (count($passengers) > $this->purchase_limit) throw new Exception("Error Processing Request: purchase_limit", 1);
     }
 
     public function fillVacancie($passengers)

@@ -15,13 +15,18 @@ class CreateAgenciesTable extends Migration
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->uuid('uid');
+            $table->uuid('uuid');
+            $table->unsignedBigInteger('agency_type_id');
             $table->string('name');
             $table->string('email', 100)->unique();
             $table->string('phone');
             $table->string('password');
             $table->string('document')->nullable();
             $table->string('logo')->nullable();
+            $table->timestamp('last_activity')->nullable();
+            $table->boolean('first_time')->default(true);
+            $table->boolean('accepeted_terms')->default(false);
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('home_dir')->nullable();
             $table->string('address_1')->nullable();
             $table->string('address_2')->nullable();
@@ -32,6 +37,7 @@ class CreateAgenciesTable extends Migration
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('agency_type_id')->references('id')->on('agency_types');
 
 
         });

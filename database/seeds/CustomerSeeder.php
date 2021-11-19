@@ -13,7 +13,6 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-        factory(Customer::class, 15)->create();
 
         DB::table('customers')->insert([
 
@@ -50,9 +49,14 @@ class CustomerSeeder extends Seeder
             'customer_id' => 1,
             'address_1' => 'Rua andorinhas, 40',
             'address_2' => 'Santo Amaro',
-            'state_id' => 464,
+            'number' => '20B',
+            'state' => 'SP',
             'postcode' => '04849564',
             'city' => 'São Paulo'
         ]);
+
+        factory(Customer::class, 15)->create();
+
+      
     }
 }

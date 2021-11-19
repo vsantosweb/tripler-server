@@ -15,6 +15,7 @@ class CreateTripScheduleBoardingsTable extends Migration
     {
         Schema::create('trip_schedule_boardings', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->unsignedBigInteger('trip_schedule_id');
             $table->unsignedBigInteger('trip_boarding_id');
             $table->time('departure_time');

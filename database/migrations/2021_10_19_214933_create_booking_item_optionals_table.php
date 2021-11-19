@@ -15,6 +15,7 @@ class CreateBookingItemOptionalsTable extends Migration
     {
         Schema::create('booking_item_optionals', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('booking_item_id');
             $table->unsignedBigInteger('optional_id');
             $table->string('name');

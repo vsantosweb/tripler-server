@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Models\Agency\Agency;
+use App\Models\Booking\Booking;
 use App\Models\Order\Order;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -90,7 +91,7 @@ class Customer extends Authenticatable implements JWTSubject
 
     public function address()
     {
-        return $this->hasOne(CustomerAddress::class)->with('state');
+        return $this->hasOne(CustomerAddress::class, 'customer_id')->with('state');
     }
 
     public function agencyOwner()
@@ -103,9 +104,9 @@ class Customer extends Authenticatable implements JWTSubject
         return $this->hasOne(TripCart::class)->with('tripSchedule');
     }
 
-    public function orders()
+    public function bookings()
     {
-        return $this->hasMany(Order::class)->with('ticket');
+        return $this->hasMany(Booking::class)->with('items');
     }
 
     public function registerConfirmationEmail()
