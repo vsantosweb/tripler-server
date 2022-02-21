@@ -31,7 +31,7 @@ class TripScheduleResource extends JsonResource
             'status' => $this->status->name,
             'cancellation_policie' => $this->cancellationModel->name,
             'period' => $this->period->name,
-            'boarding_locations' => $this->boardingLocations->map(fn ($boarding) => [
+            'boarding_locations' => $this->boardings->map(fn ($boarding) => [
                 'id' => $boarding->id,
                 'name' => $boarding->name,
             ]),
