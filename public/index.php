@@ -9,6 +9,8 @@
 
 define('LARAVEL_START', microtime(true));
 
+ini_set('memory_limit', '-1');
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
