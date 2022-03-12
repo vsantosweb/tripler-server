@@ -15,10 +15,10 @@ class CustomerAuthController extends Controller
 
         if (!$token = auth()->guard('customer')->attempt($input)) {
 
-            return $this->outputJSON('','Invalid email or password', true, 401);
+            return $this->outputJSON('','Usuário ou senha inválidos', true, 401);
         }
 
-        return $this->outputJSON($token, '', 'false', 200);
+        return $this->outputJSON($token, '', false, 200);
     }
 
     public function logout(Request $request)

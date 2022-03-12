@@ -23,6 +23,7 @@ class CreateTripsTable extends Migration
 
             $table->unsignedBigInteger('agency_id');
             $table->unsignedInteger('trip_status_id');
+            $table->unsignedBigInteger('city_id');
             $table->string('images')->nullable();
             $table->string('thumbnail')->nullable();
             $table->text('description')->nullable();

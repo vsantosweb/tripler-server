@@ -27,7 +27,9 @@ class CustomerRegisterController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return $this->outputJSON([], $newCustomer->registerConfirmationEmail(), false, 201);
+        // $newCustomer->registerConfirmationEmail();
+
+        return $this->outputJSON(JWTAuth::fromUser($newCustomer),'Registro efetuado com sucesso' , false, 201);
     }
 
     function registerConfirmation()
@@ -44,7 +46,6 @@ class CustomerRegisterController extends Controller
                 $customer->update(['email_verified_at' => now()]);
                 $verifyToken->delete();
                 return $this->outputJSON(JWTAuth::fromUser($customer), 'Confirmado com sucesso', false);
-
             } catch (\Throwable $th) {
 
                 return $this->outputJSON([],  $th->getMessage(), true);

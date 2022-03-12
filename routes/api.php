@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
         Route::prefix('agency')->namespace('Agency')->group(function () {
 
             Route::prefix('auth')->namespace('Auth')->group(function () {
+
                 Route::post('login', 'AgencyAuthController@login');
                 Route::prefix('register')->group(function () {
                     Route::post('/', 'AgencyRegisterController@register');
@@ -60,6 +62,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
                     Route::get('logged', 'AgencyAuthController@logged');
                     Route::post('logout', 'AgencyAuthController@logout');
                 });
+                
             });
             Route::middleware('auth:agency')->group(function () {
                 Route::get('trip-schedules', 'AgencyController@trips');
@@ -73,6 +76,13 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
                     Route::post('/', 'CustomerRegisterController@register');
                     Route::post('/emailverify', 'CustomerRegisterController@registerConfirmation');
                 });
+                
+                Route::prefix('password')->group(function(){
+                    Route::post('recovery-request', 'CustomerPasswordRecoveryController@recoveryRequest');
+                    Route::post('validate-recovery-request', 'CustomerPasswordRecoveryController@validateRecoveryRequest');
+                    Route::post('recovery', 'CustomerPasswordRecoveryController@recoveryRequest');
+                });
+
                 Route::post('login', 'CustomerAuthController@login');
                 Route::post('social-login', 'CustomerSocialLoginController@login');
                 Route::middleware('auth:customer')->group(function () {

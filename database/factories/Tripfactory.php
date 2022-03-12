@@ -14,6 +14,7 @@ $factory->define(Trip::class, function (Faker $faker) {
     return [
         'agency_id' => 1,
         'trip_category_id' => $faker->numberBetween($min = 1, $max = 5),
+        'city_id' => 3181,
         'uuid' => Str::uuid(),
         'name' => $name,
         'slug' => Str::slug($name),

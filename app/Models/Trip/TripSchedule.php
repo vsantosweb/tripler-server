@@ -81,7 +81,7 @@ class TripSchedule extends Model
 
     public function boardings()
     {
-        return $this->belongsToMany(TripBoardingLocation::class, 'trip_schedule_boardings', 'trip_schedule_id', 'trip_boarding_id');
+        return $this->belongsToMany(TripBoardingLocation::class, 'trip_schedule_boardings', 'trip_schedule_id', 'trip_boarding_id')->withPivot('uuid', 'id', 'departure_time');;
     }
 
     public function additionalPackages()

@@ -80,30 +80,28 @@ class CustomerBookingController extends Controller
         $booking = auth()->user()->bookings()->where('code', $bookingCode)->firstOrfail();
 
         $bookItems = $booking->items;
-
+        
         array_map(function ($passenger) use ($bookItems) {
 
             $bookItems->map(function ($item)  use ($passenger) {
 
                 $item->where('uuid', $passenger['uuid'])->update([
                     'name' => $passenger['name'],
-                    'passenger_type_id' => $passenger['passenger_type_id'],
-                    'boarding_location_id' => $passenger['boarding_location_id'],
                     'email' => $passenger['email'],
                     'phone' => $passenger['phone'],
                     'birthday' => $passenger['birthday']
                 ]);
             });
         }, $request->passengers);
-
+        
         $booking->booking_status_id = 3;
         $booking->save();
         $booking->refresh();
-
+        
         return $this->outputJSON(new BookingResource($booking), 'success', true, 200);
     }
 
-    //Efetuar pagamento de uma reserva
+    #Efetuar pagamento de uma reserva
     public function bookingPayment(Request $request, $bookingCode)
     {
 
@@ -179,7 +177,7 @@ class CustomerBookingController extends Controller
 
         // auth()->user()->notify(new OrderPlacedNotification($order));
 
-        return $this->outputJSON($booking->code, $transaction->status, false, 201);
+        return $this->outputJSON($booking, $transaction->status, false, 201);
     }
 
     public function getPostbackTransaction(Request $request)
@@ -258,10 +256,7 @@ class CustomerBookingController extends Controller
 
         $refundAmount = $booking->total * $cancellationModelChosed->refund_percent / 100;
 
-        if ($booking->status->name === 'openned') {
-            $booking->booking_status_id = $cancelStatus->id;
-            $booking->cancel_date = now();
-        }
+       
         if ($booking->status->name === 'paid') {
 
             $partialRefundedTransaction = $this->pagarme->transactions()->refund([
@@ -273,10 +268,12 @@ class CustomerBookingController extends Controller
             $booking->refund_paid = $refundAmount;
             // $booking->booking_status_id = 6;
         }
-
+        
+        $booking->booking_status_id = $cancelStatus->id;
+        $booking->cancel_date = now();
         $booking->save();
 
-        return $this->outputJSON($partialRefundedTransaction, 'Reserva cancelada com sucesso', false, 200);
+        return $this->outputJSON($booking, 'Reserva cancelada com sucesso', false, 200);
     }
 }
 
