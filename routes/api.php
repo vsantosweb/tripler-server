@@ -80,7 +80,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
                 Route::prefix('password')->group(function(){
                     Route::post('recovery-request', 'CustomerPasswordRecoveryController@recoveryRequest');
                     Route::post('validate-recovery-request', 'CustomerPasswordRecoveryController@validateRecoveryRequest');
-                    Route::post('recovery', 'CustomerPasswordRecoveryController@recoveryRequest');
+                    Route::post('recovery', 'CustomerPasswordRecoveryController@recovery');
                 });
 
                 Route::post('login', 'CustomerAuthController@login');
